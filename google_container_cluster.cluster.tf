@@ -1,12 +1,10 @@
 
 resource "google_container_cluster" "cluster" {
-  provider = "google-beta"
-  name     = var.name
-  region   = var.region
-
-  project = var.project
-
+  provider   = "google-beta"
+  location   = var.location
+  name       = var.name
   network    = data.google_compute_network.gke_network.self_link
+  project    = var.project
   subnetwork = data.google_compute_subnetwork.gke_subnetwork.self_link
 
   ip_allocation_policy {
@@ -31,15 +29,15 @@ resource "google_container_cluster" "cluster" {
 
   addons_config {
     http_load_balancing {
-      disabled = var.http_load_balancing ? true : false
+      disabled = var.http_load_balancing
     }
 
     kubernetes_dashboard {
-      disabled = var.kubernetes_dashboard ? true : false
+      disabled = var.kubernetes_dashboard
     }
 
     network_policy_config {
-      disabled = var.network_policy_config ? true : false
+      disabled = var.network_policy_config
     }
   }
 
@@ -56,8 +54,8 @@ resource "google_container_cluster" "cluster" {
   }
 
   master_authorized_networks_config {
-    cidr_blocks {     
-        cidr_block = var.master_authorized_network_cidr
+    cidr_blocks {
+      cidr_block = var.master_authorized_network_cidr
     }
   }
 }

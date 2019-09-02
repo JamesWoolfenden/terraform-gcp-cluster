@@ -1,4 +1,4 @@
-resource "google_container_node_pool" "np" {
+resource "google_container_node_pool" "nodepool" {
   project  = var.project
   provider = "google-beta"
   name     = var.node_pool["name"]

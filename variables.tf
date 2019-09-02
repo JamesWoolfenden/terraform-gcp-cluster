@@ -1,81 +1,70 @@
 variable "name" {
-  default = "test-cluster-1"
+  type=string
+
 }
 
 variable "region" {
-  default = "us-central1"
+  type=string
 }
 
-/* variable "additional_zones" {
-  type = "list"
-} */
+variable "location" {
+  type=string
+}
 
 variable "project" {
-  default = "odsp-production"
+  type=string
 }
 
 variable "network_project" {
-  default = "odsp-management"
+  type=string
 }
 
 variable "network" {
-  default = "odsp-production-network"
+  type=string
 }
 
 variable "subnetwork" {
-  default = "odsp-prod-subnets"
+  type=string
+
 }
 
 variable "ip_allocation_policy" {
-  type = "map"
-
-  default = {
-    cluster_secondary_range_name  = "odsp-prod-sub-16"
-    services_secondary_range_name = "odsp-prod-sub-48"
-  }
+  type = map
 }
 
 variable "remove_default_node_pool" {
-  default = "true"
+type=bool
+    default = true
 }
 
 variable private_cluster_master_ipv4_cidr {
-  default = "172.16.0.0/28"
+  type=string
 }
 
 variable "master_authorized_network_cidr" {
-  default = "10.25.96.0/20"
+  type=string
 }
 
 variable "http_load_balancing" {
-  default = "false"
+  type=bool
+  default = false
 }
 
 variable "kubernetes_dashboard" {
-  default = "false"
+  type=bool
+  default = false
 }
 
 variable "network_policy_config" {
-  default = "false"
+  type    = bool
+  default = false
 }
 
 variable "maintenance_window" {
-  default = "09:30"
+  type    = string
+  default = "00:30"
 }
 
 variable "node_pool" {
-  type = "map"
-
-  default = {
-    name                = "default-pool"
-    node_count          = "1"
-    machine_type        = "n1-standard-2"
-    disk_size_gb        = "10"
-    disk_type           = "pd-standard"
-    autoscaling_min     = "1"
-    autoscaling_max     = "10"
-    auto_repair         = "true"
-    auto_upgrade        = "true"
-    max_pods_per_node   = "32"
-  }
+  type = map
 }
