@@ -2,7 +2,6 @@ output "network" {
   value       = data.google_compute_subnetwork.gke_subnetwork.network
   description = "The network name or resource link to the parent network of this subnetwork."
 }
-
 output "network_description" {
   value       = data.google_compute_subnetwork.gke_subnetwork.description
   description = "Description of this subnetwork."

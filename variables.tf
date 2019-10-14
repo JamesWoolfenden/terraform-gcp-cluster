@@ -1,5 +1,6 @@
 variable "name" {
-  default = "test-cluster-1"
+  type=string
+
 }
 
 variable "region" {
@@ -30,10 +31,6 @@ variable "subnetwork" {
 variable "ip_allocation_policy" {
   type = map
 
-  default = {
-    cluster_secondary_range_name  = "odsp-prod-sub-16"
-    services_secondary_range_name = "odsp-prod-sub-48"
-  }
 }
 
 variable "remove_default_node_pool" {
@@ -66,7 +63,7 @@ variable "network_policy_config" {
 
 variable "maintenance_window" {
   type    = string
-  default = "09:30"
+  default = "00:30"
 }
 
 variable "node_pool" {
