@@ -2,7 +2,7 @@ resource "google_container_node_pool" "np" {
   project  = var.project
   provider = "google-beta"
   name     = var.node_pool["name"]
-  region   = var.region
+  location = var.location
   cluster  = google_container_cluster.cluster.name
 
   node_count        = var.node_pool["node_count"]

@@ -2,8 +2,8 @@
 resource "google_container_cluster" "cluster" {
   provider = "google-beta"
   name     = var.name
-  region   = var.region
-
+  location           = var.location
+  initial_node_count = 1
   project = var.project
 
   network    = data.google_compute_network.gke_network.self_link
@@ -16,10 +16,6 @@ resource "google_container_cluster" "cluster" {
 
   remove_default_node_pool = var.remove_default_node_pool
 
-  node_pool {
-    name = "default-pool"
-  }
-
   master_auth {
     username = ""
     password = ""
@@ -31,15 +27,15 @@ resource "google_container_cluster" "cluster" {
 
   addons_config {
     http_load_balancing {
-      disabled = var.http_load_balancing ? true : false
+      disabled = var.http_load_balancing_disabled
     }
 
     kubernetes_dashboard {
-      disabled = var.kubernetes_dashboard ? true : false
+      disabled = var.kubernetes_dashboard_disabled
     }
 
     network_policy_config {
-      disabled = var.network_policy_config ? true : false
+      disabled = var.network_policy_config_disabled
     }
   }
 

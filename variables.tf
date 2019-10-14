@@ -3,31 +3,32 @@ variable "name" {
 }
 
 variable "region" {
-  default = "us-central1"
+  type = string
 }
 
-/* variable "additional_zones" {
-  type = "list"
-} */
+variable "location" {
+  type        = string
+  description = "The location of the cluster"
+}
 
 variable "project" {
-  default = "odsp-production"
+  type = string
 }
 
 variable "network_project" {
-  default = "odsp-management"
+  type = string
 }
 
 variable "network" {
-  default = "odsp-production-network"
+  type = string
 }
 
 variable "subnetwork" {
-  default = "odsp-prod-subnets"
+  type = string
 }
 
 variable "ip_allocation_policy" {
-  type = "map"
+  type = map
 
   default = {
     cluster_secondary_range_name  = "odsp-prod-sub-16"
@@ -36,35 +37,40 @@ variable "ip_allocation_policy" {
 }
 
 variable "remove_default_node_pool" {
-  default = "true"
+  type    = bool
+  default = true
 }
 
 variable private_cluster_master_ipv4_cidr {
-  default = "172.16.0.0/28"
+  type = string
 }
 
 variable "master_authorized_network_cidr" {
-  default = "10.25.96.0/20"
+  type = string
 }
 
-variable "http_load_balancing" {
-  default = "false"
+variable "http_load_balancing_disabled" {
+  type    = bool
+  default = false
 }
 
-variable "kubernetes_dashboard" {
-  default = "false"
+variable "kubernetes_dashboard_disabled" {
+  type    = bool
+  default = false
 }
 
 variable "network_policy_config" {
-  default = "false"
+  type    = bool
+  default = false
 }
 
 variable "maintenance_window" {
+  type    = string
   default = "09:30"
 }
 
 variable "node_pool" {
-  type = "map"
+  type = map
 
   default = {
     name                = "default-pool"
