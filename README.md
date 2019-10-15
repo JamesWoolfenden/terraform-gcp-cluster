@@ -25,36 +25,21 @@ module "cluster" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| http\_load\_balancing\_disabled | Disable Http Load balancing | bool
- | `"false"` | no |
-| ip\_allocation\_policy | Values to fill the cluster ip_allocation_policy block | map
- | n/a | yes |
-| kubernetes\_dashboard\_disabled | Switch on the Dashboard | bool
- | `"false"` | no |
-| location | The location of the cluster | string
- | n/a | yes |
-| maintenance\_window |  | string
- | `"00:30"` | no |
-| master\_authorized\_network\_cidr | The range of IPs that can connect to the Kubernetes master | string
- | n/a | yes |
-| name | The Name of the cluster | string
- | n/a | yes |
-| network | The name of the VPC | string
- | n/a | yes |
-| network\_policy\_config\_disabled | Toggle network policy | bool
- | `"false"` | no |
-| network\_project | The GCP project of the Network the cluster is in | string
- | n/a | yes |
-| node\_pool | Configuration of the Node hosts | map
- | `{ "auto_repair": "true", "auto_upgrade": "true", "autoscaling_max": "10", "autoscaling_min": "1", "disk_size_gb": "10", "disk_type": "pd-standard", "machine_type": "n1-standard-2", "max_pods_per_node": "32", "name": "default-pool", "node_count": "1" }` | no |
-| private\_cluster\_config | Values to fill the cluster private_cluster_config block | map
- | n/a | yes |
-| region | The GCP region | string
- | n/a | yes |
-| remove\_default\_node\_pool | An override to remove the node pool, doesnt make much sense to me either | bool
- | `"true"` | no |
-| subnetwork | The name of the sub-net to use | string
- | n/a | yes |
+| http\_load\_balancing\_disabled | Disable Http Load balancing | bool | `"false"` | no |
+| ip\_allocation\_policy | Values to fill the cluster ip_allocation_policy block | map | n/a | yes |
+| kubernetes\_dashboard\_disabled | Switch on the Dashboard | bool | `"false"` | no |
+| location | The location of the cluster | string | n/a | yes |
+| maintenance\_window |  | string | `"00:30"` | no |
+| master\_authorized\_network\_cidr | The range of IPs that can connect to the Kubernetes master | string | n/a | yes |
+| name | The Name of the cluster | string | n/a | yes |
+| network | The name of the VPC | string | n/a | yes |
+| network\_policy\_config\_disabled | Toggle network policy | bool | `"false"` | no |
+| network\_project | The GCP project of the Network the cluster is in | string | n/a | yes |
+| node\_pool | Configuration of the Node hosts | map | `{ "auto_repair": "true", "auto_upgrade": "true", "autoscaling_max": "10", "autoscaling_min": "1", "disk_size_gb": "10", "disk_type": "pd-standard", "machine_type": "n1-standard-2", "max_pods_per_node": "32", "name": "default-pool", "node_count": "1" }` | no |
+| private\_cluster\_config | Values to fill the cluster private_cluster_config block | map | n/a | yes |
+| region | The GCP region | string | n/a | yes |
+| remove\_default\_node\_pool | An override to remove the node pool, doesnt make much sense to me either | bool | `"true"` | no |
+| subnetwork | The name of the sub-net to use | string | n/a | yes |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Related Projects
