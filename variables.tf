@@ -35,7 +35,7 @@ variable "remove_default_node_pool" {
 }
 
 variable "private_cluster_config" {
-  type=map
+  type = map
 }
 
 variable "master_authorized_network_cidr" {
