@@ -1,10 +1,11 @@
 variable "name" {
-  type = string
-
+  description = "The Name of the cluster"
+  type        = string
 }
 
 variable "region" {
-  type = string
+  description = "The GCP region"
+  type        = string
 }
 
 variable "location" {
@@ -13,48 +14,57 @@ variable "location" {
 }
 
 variable "network_project" {
-  type = string
+  description = "The GCP project of the Network the cluster is in"
+  type        = string
 }
 
 variable "network" {
-  type = string
+  description = "The name of the VPC"
+  type        = string
 }
 
 variable "subnetwork" {
-  type = string
+  description = "The name of the sub-net to use"
+  type        = string
 }
 
 variable "ip_allocation_policy" {
-  type = map
-
+  description = "Values to fill the cluster ip_allocation_policy block"
+  type        = map
 }
 
 variable "remove_default_node_pool" {
-  type    = bool
-  default = true
+  description = "An override to remove the node pool, doesnt make much sense to me either"
+  type        = bool
+  default     = true
 }
 
 variable "private_cluster_config" {
-  type = map
+  description = "Values to fill the cluster private_cluster_config block"
+  type        = map
 }
 
 variable "master_authorized_network_cidr" {
-  type = string
+  description = "The range of IPs that can connect to the Kubernetes master"
+  type        = string
 }
 
 variable "http_load_balancing_disabled" {
-  type    = bool
-  default = false
+  description = "Disable Http Load balancing"
+  type        = bool
+  default     = false
 }
 
 variable "kubernetes_dashboard_disabled" {
-  type    = bool
-  default = false
+  description = "Switch on the Dashboard"
+  type        = bool
+  default     = false
 }
 
 variable "network_policy_config_disabled" {
-  type    = bool
-  default = false
+  description = "Toggle network policy"
+  type        = bool
+  default     = false
 }
 
 variable "maintenance_window" {
@@ -63,7 +73,8 @@ variable "maintenance_window" {
 }
 
 variable "node_pool" {
-  type = map
+  description = "Configuration of the Node hosts"
+  type        = map
 
   default = {
     name              = "default-pool"

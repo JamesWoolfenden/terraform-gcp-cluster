@@ -16,20 +16,20 @@ ip_allocation_policy = {
   use_ip_aliases                = true
 }
 
-http_load_balancing_disabled     = false
+http_load_balancing_disabled = false
 
 
-kubernetes_dashboard_disabled    = true
-network_policy_config_disabled   = false
-remove_default_node_pool         = true
+kubernetes_dashboard_disabled  = true
+network_policy_config_disabled = false
+remove_default_node_pool       = true
 
-private_cluster_config={
-  master_ipv4_cidr_block = "172.29.0.0/28"
-  enable_private_endpoint= true
-  enable_private_nodes   = true
+private_cluster_config = {
+  master_ipv4_cidr_block  = "172.29.0.0/28"
+  enable_private_endpoint = true
+  enable_private_nodes    = true
 }
-master_authorized_network_cidr   = ""
-maintenance_window               = null
+master_authorized_network_cidr = ""
+maintenance_window             = null
 node_pool = {
   name              = "default-pool"
   node_count        = "1"

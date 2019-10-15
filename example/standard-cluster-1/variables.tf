@@ -61,5 +61,5 @@ variable "node_pool" {
 }
 
 variable "private_cluster_config" {
-  type=map
+  type = map
 }

@@ -25,7 +25,6 @@ variable "network" {
 
 variable "subnetwork" {
   type = string
-
 }
 
 variable "ip_allocation_policy" {
@@ -61,5 +60,5 @@ variable "node_pool" {
 }
 
 variable "private_cluster_config" {
-  type=map
+  type = map
 }

@@ -16,17 +16,17 @@ ip_allocation_policy = {
   use_ip_aliases                = true
 }
 
-http_load_balancing_disabled  = false
-kubernetes_dashboard_disabled = true
-network_policy_config_disabled= false
-remove_default_node_pool      = false
-private_cluster_config={
-  master_ipv4_cidr_block = "172.16.0.0/28"
-  enable_private_endpoint= true
-  enable_private_nodes   = true
+http_load_balancing_disabled   = false
+kubernetes_dashboard_disabled  = true
+network_policy_config_disabled = false
+remove_default_node_pool       = false
+private_cluster_config = {
+  master_ipv4_cidr_block  = "172.16.0.0/28"
+  enable_private_endpoint = true
+  enable_private_nodes    = true
 }
-master_authorized_network_cidr   = ""
-maintenance_window               = "09:30"
+master_authorized_network_cidr = ""
+maintenance_window             = "09:30"
 
 node_pool = {
   name              = "default-pool"

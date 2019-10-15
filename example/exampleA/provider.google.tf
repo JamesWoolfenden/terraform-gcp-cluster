@@ -10,6 +10,6 @@ provider "google-beta" {
   region  = var.region
 }
 
- provider "http" {
-   version="1.1"
- }
+provider "http" {
+  version = "1.1"
+}
