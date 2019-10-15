@@ -1,7 +1,7 @@
 
 # terraform-gcp-cluster
 
-A lightweight GKE cluster module, which 
+A lightweight GKE cluster module, which
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs

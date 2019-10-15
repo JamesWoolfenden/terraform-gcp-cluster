@@ -1,17 +1,23 @@
 
 resource "google_container_cluster" "cluster" {
-  provider = "google-beta"
-  name     = var.name
+  provider           = "google-beta"
+  name               = var.name
   location           = var.location
   initial_node_count = 1
-  project = var.project
+  project            = var.project
 
   network    = data.google_compute_network.gke_network.self_link
   subnetwork = data.google_compute_subnetwork.gke_subnetwork.self_link
 
   ip_allocation_policy {
+    cluster_ipv4_cidr_block       = var.ip_allocation_policy["cluster_ipv4_cidr_block"]
     cluster_secondary_range_name  = var.ip_allocation_policy["cluster_secondary_range_name"]
+    create_subnetwork             = var.ip_allocation_policy["create_subnetwork"]
+    node_ipv4_cidr_block          = var.ip_allocation_policy["node_ipv4_cidr_block"]
+    services_ipv4_cidr_block      = var.ip_allocation_policy["services_ipv4_cidr_block"]
     services_secondary_range_name = var.ip_allocation_policy["services_secondary_range_name"]
+    subnetwork_name               = var.ip_allocation_policy["subnetwork_name"]
+    use_ip_aliases                = var.ip_allocation_policy["use_ip_aliases"]
   }
 
   remove_default_node_pool = var.remove_default_node_pool

@@ -1,6 +1,6 @@
 name            = "exampleB"
 region          = "us-central1"
-location        = "us-central1a"
+location        = "us-central1-a"
 project         = "odsp-production"
 network_project = "odsp-management"
 network         = "

@@ -1,5 +1,5 @@
 variable "name" {
-  type=string
+  type = string
 
 }
 
@@ -56,7 +56,7 @@ variable "kubernetes_dashboard_disabled" {
   default = false
 }
 
-variable "network_policy_config" {
+variable "network_policy_config_disabled" {
   type    = bool
   default = false
 }
@@ -70,15 +70,15 @@ variable "node_pool" {
   type = map
 
   default = {
-    name                = "default-pool"
-    node_count          = "1"
-    machine_type        = "n1-standard-2"
-    disk_size_gb        = "10"
-    disk_type           = "pd-standard"
-    autoscaling_min     = "1"
-    autoscaling_max     = "10"
-    auto_repair         = "true"
-    auto_upgrade        = "true"
-    max_pods_per_node   = "32"
+    name              = "default-pool"
+    node_count        = "1"
+    machine_type      = "n1-standard-2"
+    disk_size_gb      = "10"
+    disk_type         = "pd-standard"
+    autoscaling_min   = "1"
+    autoscaling_max   = "10"
+    auto_repair       = "true"
+    auto_upgrade      = "true"
+    max_pods_per_node = "32"
   }
 }

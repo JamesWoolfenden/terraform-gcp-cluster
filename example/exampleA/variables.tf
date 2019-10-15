@@ -1,30 +1,30 @@
 variable "name" {
-  type=string
+  type = string
 
 }
 
 variable "region" {
-  type=string
+  type = string
 }
 
 variable "location" {
-  type=string
+  type = string
 }
 
 variable "project" {
-  type=string
+  type = string
 }
 
 variable "network_project" {
-  type=string
+  type = string
 }
 
 variable "network" {
-  type=string
+  type = string
 }
 
 variable "subnetwork" {
-  type=string
+  type = string
 
 }
 
@@ -33,31 +33,31 @@ variable "ip_allocation_policy" {
 }
 
 variable "remove_default_node_pool" {
-type=bool
+  type = bool
 }
 
 variable private_cluster_master_ipv4_cidr {
-  type=string
+  type = string
 }
 
 variable "master_authorized_network_cidr" {
-  type=string
+  type = string
 }
 
-variable "http_load_balancing" {
-  type=bool
+variable "http_load_balancing_disabled" {
+  type = bool
 }
 
-variable "kubernetes_dashboard" {
-  type=bool
+variable "kubernetes_dashboard_disabled" {
+  type = bool
 }
 
-variable "network_policy_config" {
-  type    = bool
+variable "network_policy_config_disabled" {
+  type = bool
 }
 
 variable "maintenance_window" {
-  type    = string
+  type = string
 }
 
 variable "node_pool" {
