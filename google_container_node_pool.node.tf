@@ -1,5 +1,5 @@
 resource "google_container_node_pool" "nodepool" {
-  project  = var.project
+  project  = data.google_project.project.name
   provider = "google-beta"
   name     = var.node_pool["name"]
   location = var.location

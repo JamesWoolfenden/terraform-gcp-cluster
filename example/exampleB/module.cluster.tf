@@ -7,8 +7,8 @@ module "cluster" {
   network                          = var.network
   network_project                  = var.network_project
   node_pool                        = var.node_pool
-  private_cluster_master_ipv4_cidr = var.private_cluster_master_ipv4_cidr
-  project                          = var.project
+  private_cluster_config           = var.private_cluster_config
   region                           = var.region
   subnetwork                       = var.subnetwork
+  network_policy_config_disabled   = var.network_policy_config_disabled
 }

@@ -12,10 +12,6 @@ variable "location" {
   description = "The location of the cluster"
 }
 
-variable "project" {
-  type = string
-}
-
 variable "network_project" {
   type = string
 }
@@ -38,8 +34,8 @@ variable "remove_default_node_pool" {
   default = true
 }
 
-variable private_cluster_master_ipv4_cidr {
-  type = string
+variable "private_cluster_config" {
+  type=map
 }
 
 variable "master_authorized_network_cidr" {

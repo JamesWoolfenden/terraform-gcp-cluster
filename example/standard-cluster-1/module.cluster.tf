@@ -2,7 +2,7 @@ module "cluster" {
   source                           = "../../"
   ip_allocation_policy             = var.ip_allocation_policy
   location                         = var.location
-  master_authorized_network_cidr   = module.ip.cidr
+  master_authorized_network_cidr   = "10.0.0.0/16"
   name                             = var.name
   network                          = var.network
   network_project                  = var.network_project

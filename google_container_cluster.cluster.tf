@@ -4,19 +4,17 @@ resource "google_container_cluster" "cluster" {
   name               = var.name
   location           = var.location
   initial_node_count = 1
-  project            = var.project
+  project            = data.google_project.project.name
 
-  network    = data.google_compute_network.gke_network.self_link
-  subnetwork = data.google_compute_subnetwork.gke_subnetwork.self_link
+  network    = var.network
+  subnetwork = var.subnetwork
 
   ip_allocation_policy {
     cluster_ipv4_cidr_block       = var.ip_allocation_policy["cluster_ipv4_cidr_block"]
     cluster_secondary_range_name  = var.ip_allocation_policy["cluster_secondary_range_name"]
-    create_subnetwork             = var.ip_allocation_policy["create_subnetwork"]
     node_ipv4_cidr_block          = var.ip_allocation_policy["node_ipv4_cidr_block"]
     services_ipv4_cidr_block      = var.ip_allocation_policy["services_ipv4_cidr_block"]
     services_secondary_range_name = var.ip_allocation_policy["services_secondary_range_name"]
-    subnetwork_name               = var.ip_allocation_policy["subnetwork_name"]
     use_ip_aliases                = var.ip_allocation_policy["use_ip_aliases"]
   }
 
@@ -52,9 +50,9 @@ resource "google_container_cluster" "cluster" {
   }
 
   private_cluster_config {
-    enable_private_nodes    = true
-    enable_private_endpoint = true
-    master_ipv4_cidr_block  = var.private_cluster_master_ipv4_cidr
+    enable_private_nodes    = var.private_cluster_config["enable_private_nodes"]
+    enable_private_endpoint = var.private_cluster_config["enable_private_endpoint"]
+    master_ipv4_cidr_block  = var.private_cluster_config["master_ipv4_cidr_block"]
   }
 
   master_authorized_networks_config {
