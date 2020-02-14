@@ -1,7 +1,5 @@
 provider "google" {
-  version = "2.5.1"
-  project = var.project
-  region  = var.region
+  version = "~>3.5"
 }
 
 provider "google-beta" {
