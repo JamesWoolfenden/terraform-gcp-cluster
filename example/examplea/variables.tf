@@ -25,7 +25,6 @@ variable "network" {
 
 variable "subnetwork" {
   type = string
-
 }
 
 variable "ip_allocation_policy" {
@@ -34,10 +33,6 @@ variable "ip_allocation_policy" {
 
 variable "remove_default_node_pool" {
   type = bool
-}
-
-variable private_cluster_master_ipv4_cidr {
-  type = string
 }
 
 variable "master_authorized_network_cidr" {
@@ -61,5 +56,9 @@ variable "maintenance_window" {
 }
 
 variable "node_pool" {
+  type = map
+}
+
+variable "private_cluster_config" {
   type = map
 }
