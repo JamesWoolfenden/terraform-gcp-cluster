@@ -1,6 +1,6 @@
 resource "google_container_node_pool" "nodepool" {
   project  = data.google_project.project.name
-  provider = "google-beta"
+  provider = google-beta
   name     = var.node_pool["name"]
   location = var.location
   cluster  = google_container_cluster.cluster.name
@@ -30,4 +30,5 @@ resource "google_container_node_pool" "nodepool" {
     auto_repair  = var.node_pool["auto_repair"]
     auto_upgrade = var.node_pool["auto_upgrade"]
   }
+
 }

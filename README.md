@@ -45,6 +45,7 @@ module "cluster" {
 | master\_authorized\_network\_cidr | The range of IPs that can connect to the Kubernetes master | `string` | n/a | yes |
 | name | The Name of the cluster | `string` | n/a | yes |
 | network | The name of the VPC | `string` | n/a | yes |
+| network\_policy | To enable the network policy | `bool` | `true` | no |
 | network\_policy\_config\_disabled | Toggle network policy | `bool` | `false` | no |
 | network\_project | The GCP project of the Network the cluster is in | `string` | n/a | yes |
 | node\_pool | Configuration of the Node hosts | `map` | <pre>{<br>  "auto_repair": "true",<br>  "auto_upgrade": "true",<br>  "autoscaling_max": "10",<br>  "autoscaling_min": "1",<br>  "disk_size_gb": "10",<br>  "disk_type": "pd-standard",<br>  "machine_type": "n1-standard-2",<br>  "max_pods_per_node": "32",<br>  "name": "default-pool",<br>  "node_count": "1"<br>}<br></pre> | no |

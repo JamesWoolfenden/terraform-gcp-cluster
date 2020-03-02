@@ -1,6 +1,7 @@
 
 resource "google_container_cluster" "cluster" {
-  provider           = "google-beta"
+  #checkov:skip=CKV_GCP_13: "Ensure a client certificate is used by clients to authenticate to Kubernetes Engine Clusters"
+  provider           = google-beta
   name               = var.name
   location           = var.location
   initial_node_count = 1
@@ -59,5 +60,9 @@ resource "google_container_cluster" "cluster" {
     cidr_blocks {
       cidr_block = var.master_authorized_network_cidr
     }
+  }
+
+  network_policy {
+    enabled = true
   }
 }
