@@ -20,3 +20,4 @@ lambda
 *.bak
 *.orig
 *.gz
+*.info

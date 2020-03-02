@@ -1,6 +1,11 @@
 [![Slalom][logo]](https://slalom.com)
 
-# terraform-gcp-cluster [![Build Status](https://api.travis-ci.com/JamesWoolfenden/terraform-gcp-cluster.svg?branch=master)](https://travis-ci.com/JamesWoolfenden/terraform-gcp-cluster) [![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-gcp-bastion.svg)](https://github.com/JamesWoolfenden/terraform-gcp-cluster/releases/latest)
+# terraform-gcp-cluster
+
+[![Build Status](https://github.com/JamesWoolfenden/terraform-gcp-cluster/workflows/Verify%20and%20Bump/badge.svg?branch=master)](https://github.com/JamesWoolfenden/terraform-gcp-cluster)
+[![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-gcp-bastion.svg)](https://github.com/JamesWoolfenden/terraform-gcp-cluster/releases/latest)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![pre-commit](https://img.shields.io/badge/checkov-verified-brightgreen)](https://www.checkov.io/)
 
 A lightweight GKE cluster module.
 
@@ -21,25 +26,43 @@ module "cluster" {
 }
 ```
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| google | n/a |
+| google-beta | n/a |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| http\_load\_balancing\_disabled | Disable Http Load balancing | bool | `"false"` | no |
-| ip\_allocation\_policy | Values to fill the cluster ip_allocation_policy block | map | n/a | yes |
-| kubernetes\_dashboard\_disabled | Switch on the Dashboard | bool | `"false"` | no |
-| location | The location of the cluster | string | n/a | yes |
-| maintenance\_window |  | string | `"00:30"` | no |
-| master\_authorized\_network\_cidr | The range of IPs that can connect to the Kubernetes master | string | n/a | yes |
-| name | The Name of the cluster | string | n/a | yes |
-| network | The name of the VPC | string | n/a | yes |
-| network\_policy\_config\_disabled | Toggle network policy | bool | `"false"` | no |
-| network\_project | The GCP project of the Network the cluster is in | string | n/a | yes |
-| node\_pool | Configuration of the Node hosts | map | `{ "auto_repair": "true", "auto_upgrade": "true", "autoscaling_max": "10", "autoscaling_min": "1", "disk_size_gb": "10", "disk_type": "pd-standard", "machine_type": "n1-standard-2", "max_pods_per_node": "32", "name": "default-pool", "node_count": "1" }` | no |
-| private\_cluster\_config | Values to fill the cluster private_cluster_config block | map | n/a | yes |
-| region | The GCP region | string | n/a | yes |
-| remove\_default\_node\_pool | An override to remove the node pool, doesnt make much sense to me either | bool | `"true"` | no |
-| subnetwork | The name of the sub-net to use | string | n/a | yes |
+|------|-------------|------|---------|:-----:|
+| http\_load\_balancing\_disabled | Disable Http Load balancing | `bool` | `false` | no |
+| ip\_allocation\_policy | Values to fill the cluster ip\_allocation\_policy block | `map` | n/a | yes |
+| kubernetes\_dashboard\_disabled | Switch on the Dashboard | `bool` | `false` | no |
+| location | The location of the cluster | `string` | n/a | yes |
+| maintenance\_window | n/a | `string` | `"00:30"` | no |
+| master\_authorized\_network\_cidr | The range of IPs that can connect to the Kubernetes master | `string` | n/a | yes |
+| name | The Name of the cluster | `string` | n/a | yes |
+| network | The name of the VPC | `string` | n/a | yes |
+| network\_policy\_config\_disabled | Toggle network policy | `bool` | `false` | no |
+| network\_project | The GCP project of the Network the cluster is in | `string` | n/a | yes |
+| node\_pool | Configuration of the Node hosts | `map` | <pre>{<br>  "auto_repair": "true",<br>  "auto_upgrade": "true",<br>  "autoscaling_max": "10",<br>  "autoscaling_min": "1",<br>  "disk_size_gb": "10",<br>  "disk_type": "pd-standard",<br>  "machine_type": "n1-standard-2",<br>  "max_pods_per_node": "32",<br>  "name": "default-pool",<br>  "node_count": "1"<br>}<br></pre> | no |
+| private\_cluster\_config | Values to fill the cluster private\_cluster\_config block | `map` | n/a | yes |
+| region | The GCP region | `string` | n/a | yes |
+| remove\_default\_node\_pool | An override to remove the node pool, doesnt make much sense to me either | `bool` | `true` | no |
+| subnetwork | The name of the sub-net to use | `string` | n/a | yes |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| gateway\_address | The IP address of the gateway. |
+| ip\_cidr\_range | The IP address range that machines in this network are assigned to, represented as a CIDR block. |
+| network | The network name or resource link to the parent network of this subnetwork. |
+| network\_description | Description of this subnetwork. |
+| private\_ip\_google\_access | Whether the VMs in this sub-net can access Google services without assigned external IP addresses. |
+| secondary\_ip\_range | An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. Structure is documented below. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Related Projects
