@@ -48,10 +48,12 @@ module "cluster" {
 | network\_policy | To enable the network policy | `bool` | `true` | no |
 | network\_policy\_config\_disabled | Toggle network policy | `bool` | `false` | no |
 | network\_project | The GCP project of the Network the cluster is in | `string` | n/a | yes |
-| node\_pool | Configuration of the Node hosts | `map` | <pre>{<br>  "auto_repair": "true",<br>  "auto_upgrade": "true",<br>  "autoscaling_max": "10",<br>  "autoscaling_min": "1",<br>  "disk_size_gb": "10",<br>  "disk_type": "pd-standard",<br>  "machine_type": "n1-standard-2",<br>  "max_pods_per_node": "32",<br>  "name": "default-pool",<br>  "node_count": "1"<br>}<br></pre> | no |
+| node\_pool | Configuration of the Node hosts | `map` | <pre>{<br>  "auto_repair": "true",<br>  "auto_upgrade": "true",<br>  "autoscaling_max": "10",<br>  "autoscaling_min": "1",<br>  "disk_size_gb": "10",<br>  "disk_type": "pd-standard",<br>  "machine_type": "n1-standard-2",<br>  "max_pods_per_node": "32",<br>  "name": "default-pool",<br>  "node_count": "1"<br>}</pre> | no |
+| pod\_security\_policy\_config\_enabled | n/a | `bool` | `true` | no |
 | private\_cluster\_config | Values to fill the cluster private\_cluster\_config block | `map` | n/a | yes |
 | region | The GCP region | `string` | n/a | yes |
 | remove\_default\_node\_pool | An override to remove the node pool, doesnt make much sense to me either | `bool` | `true` | no |
+| resource\_labels | n/a | `map` | <pre>{<br>  "createdby": "terraform"<br>}</pre> | no |
 | subnetwork | The name of the sub-net to use | `string` | n/a | yes |
 
 ## Outputs
