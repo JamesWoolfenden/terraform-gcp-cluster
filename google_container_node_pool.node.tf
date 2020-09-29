@@ -1,6 +1,9 @@
 resource "google_container_node_pool" "nodepool" {
+  #checkov:skip=CKV_GCP_22: "Ensure Container-Optimized OS (cos) is used for Kubernetes Engine Clusters Node image"
+  #checkov:skip=CKV_GCP_10: "Ensure 'Automatic node upgrade' is enabled for Kubernetes Clusters"
+  #checkov:skip=CKV_GCP_9: "Ensure 'Automatic node repair' is enabled for Kubernetes Clusters"
   project  = data.google_project.project.name
-  provider = "google-beta"
+  provider = google-beta
   name     = var.node_pool["name"]
   location = var.location
   cluster  = google_container_cluster.cluster.name
@@ -30,4 +33,5 @@ resource "google_container_node_pool" "nodepool" {
     auto_repair  = var.node_pool["auto_repair"]
     auto_upgrade = var.node_pool["auto_upgrade"]
   }
+
 }

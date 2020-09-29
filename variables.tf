@@ -89,3 +89,9 @@ variable "node_pool" {
     max_pods_per_node = "32"
   }
 }
+
+variable "network_policy" {
+  type        = bool
+  default     = true
+  description = "To enable the network policy"
+}
