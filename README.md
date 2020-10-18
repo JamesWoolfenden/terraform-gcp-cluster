@@ -25,7 +25,51 @@ module "cluster" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-Error: no lines in file
+## Requirements
+
+No requirements.
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| google | n/a |
+| google-beta | n/a |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| http\_load\_balancing\_disabled | Disable Http Load balancing | `bool` | `false` | no |
+| ip\_allocation\_policy | Values to fill the cluster ip\_allocation\_policy block | `map` | n/a | yes |
+| kubernetes\_dashboard\_disabled | Switch on the Dashboard | `bool` | `false` | no |
+| location | The location of the cluster | `string` | n/a | yes |
+| maintenance\_window | n/a | `string` | `"00:30"` | no |
+| master\_authorized\_network\_cidr | The range of IPs that can connect to the Kubernetes master | `string` | n/a | yes |
+| name | The Name of the cluster | `string` | n/a | yes |
+| network | The name of the VPC | `string` | n/a | yes |
+| network\_policy | To enable the network policy | `bool` | `true` | no |
+| network\_policy\_config\_disabled | Toggle network policy | `bool` | `false` | no |
+| network\_project | The GCP project of the Network the cluster is in | `string` | n/a | yes |
+| node\_pool | Configuration of the Node hosts | `map` | <pre>{<br>  "auto_repair": "true",<br>  "auto_upgrade": "true",<br>  "autoscaling_max": "10",<br>  "autoscaling_min": "1",<br>  "disk_size_gb": "10",<br>  "disk_type": "pd-standard",<br>  "machine_type": "n1-standard-2",<br>  "max_pods_per_node": "32",<br>  "name": "default-pool",<br>  "node_count": "1"<br>}</pre> | no |
+| pod\_security\_policy\_config\_enabled | n/a | `bool` | `true` | no |
+| private\_cluster\_config | Values to fill the cluster private\_cluster\_config block | `map` | n/a | yes |
+| region | The GCP region | `string` | n/a | yes |
+| remove\_default\_node\_pool | An override to remove the node pool, doesnt make much sense to me either | `bool` | `true` | no |
+| resource\_labels | n/a | `map` | <pre>{<br>  "createdby": "terraform"<br>}</pre> | no |
+| subnetwork | The name of the sub-net to use | `string` | n/a | yes |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| gateway\_address | The IP address of the gateway. |
+| ip\_cidr\_range | The IP address range that machines in this network are assigned to, represented as a CIDR block. |
+| network | The network name or resource link to the parent network of this subnetwork. |
+| network\_description | Description of this subnetwork. |
+| private\_ip\_google\_access | Whether the VMs in this sub-net can access Google services without assigned external IP addresses. |
+| secondary\_ip\_range | An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. Structure is documented below. |
+
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Related Projects
@@ -68,7 +112,7 @@ with the License. You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing,
 software distributed under the License is distributed on an
-[linkedin]: https://www.linkedin.com/in/jameswoolfenden/
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
 KIND, either express or implied. See the License for the
 specific language governing permissions and limitations
 under the License.
@@ -79,8 +123,6 @@ under the License.
 
 [jameswoolfenden_homepage]: https://github.com/jameswoolfenden
 [jameswoolfenden_avatar]: https://github.com/jameswoolfenden.png?size=150
-[logo]: https://gist.githubusercontent.com/JamesWoolfenden/5c457434351e9fe732ca22b78fdd7d5e/raw/15933294ae2b00f5dba6557d2be88f4b4da21201/slalom-logo.png
-[website]: https://slalom.com
 [github]: https://github.com/jameswoolfenden
 [linkedin]: https://www.linkedin.com/in/jameswoolfenden/
 [twitter]: https://twitter.com/JimWoolfenden
