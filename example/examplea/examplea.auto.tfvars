@@ -38,7 +38,5 @@ node_pool = {
   disk_type         = "pd-standard"
   autoscaling_min   = "1"
   autoscaling_max   = "10"
-  auto_repair       = true
-  auto_upgrade      = true
   max_pods_per_node = "32"
 }

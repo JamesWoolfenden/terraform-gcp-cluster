@@ -14,10 +14,8 @@ resource "google_container_cluster" "cluster" {
   ip_allocation_policy {
     cluster_ipv4_cidr_block       = var.ip_allocation_policy["cluster_ipv4_cidr_block"]
     cluster_secondary_range_name  = var.ip_allocation_policy["cluster_secondary_range_name"]
-    node_ipv4_cidr_block          = var.ip_allocation_policy["node_ipv4_cidr_block"]
     services_ipv4_cidr_block      = var.ip_allocation_policy["services_ipv4_cidr_block"]
     services_secondary_range_name = var.ip_allocation_policy["services_secondary_range_name"]
-    use_ip_aliases                = var.ip_allocation_policy["use_ip_aliases"]
   }
 
   remove_default_node_pool = var.remove_default_node_pool
@@ -32,10 +30,6 @@ resource "google_container_cluster" "cluster" {
   addons_config {
     http_load_balancing {
       disabled = var.http_load_balancing_disabled
-    }
-
-    kubernetes_dashboard {
-      disabled = var.kubernetes_dashboard_disabled
     }
 
     network_policy_config {

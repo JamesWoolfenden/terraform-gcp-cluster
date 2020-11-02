@@ -27,19 +27,26 @@ module "cluster" {
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| terraform | >= 0.13 |
+| google | 3.45.0 |
+| google-beta | 3.45 |
+| http | 1.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| google | n/a |
-| google-beta | n/a |
+| google | 3.45.0 |
+| google-beta | 3.45 |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| auto\_repair | n/a | `bool` | `true` | no |
+| auto\_upgrade | n/a | `bool` | `true` | no |
 | http\_load\_balancing\_disabled | Disable Http Load balancing | `bool` | `false` | no |
 | ip\_allocation\_policy | Values to fill the cluster ip\_allocation\_policy block | `map` | n/a | yes |
 | kubernetes\_dashboard\_disabled | Switch on the Dashboard | `bool` | `false` | no |
