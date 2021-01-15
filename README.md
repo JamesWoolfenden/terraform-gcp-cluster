@@ -27,19 +27,14 @@ module "cluster" {
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-| Name | Version |
-|------|---------|
-| terraform | >= 0.13 |
-| google | 3.45.0 |
-| google-beta | 3.45 |
-| http | 1.1 |
+No requirements.
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| google | 3.45.0 |
-| google-beta | 3.45 |
+| google | n/a |
+| google-beta | n/a |
 
 ## Inputs
 
@@ -99,7 +94,7 @@ Please use the [issue tracker](https://github.com/jameswoolfenden/terraform-aws-
 
 ## Copyrights
 
-Copyright © 2019-2020 James Woolfenden
+Copyright © 2019-2021 James Woolfenden
 
 ## License
 
