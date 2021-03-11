@@ -29,7 +29,7 @@ variable "subnetwork" {
 }
 
 variable "ip_allocation_policy" {
-  type = map
+  type = map(any)
 }
 
 variable "remove_default_node_pool" {
@@ -57,9 +57,9 @@ variable "maintenance_window" {
 }
 
 variable "node_pool" {
-  type = map
+  type = map(any)
 }
 
 variable "private_cluster_config" {
-  type = map
+  type = map(any)
 }

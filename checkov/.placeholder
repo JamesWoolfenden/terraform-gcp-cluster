@@ -1,0 +1,66 @@
+checks
+1. Ensure the GKE Metadata Server is Enabled
+in google_container_cluster or google_container_node_pool
+node_config{
+    workload_metadata_config {
+    node_metadata="GKE_METADATA_SERVER"
+}
+}
+
+2. When creating New Clusters - Automate GKE version management using Release Channels
+property Release Channels in clusters
+ release_channel {
+    channel=var.release_channel
+  }
+  
+3. Ensure Shielded GKE Nodes are Enabled
+
+enable_shielded_nodes=true
+
+Default to False so only valid if set and true
+
+4. Ensure Integrity Monitoring for Shielded GKE Nodes is Enabled
+This is a default, so nothing is valid as is set explicitly but not false
+shielded_instance_config {
+    enable_integrity_monitoring=true
+}
+
+
+5. Ensure Secure Boot for Shielded GKE Nodes is Enabled
+check exists and set as defaults to false
+shielded_instance_config {
+enable_secure_boot =true
+}
+
+6.Enable VPC Flow Logs and Intranode Visibility
+
+https://cloud.google.com/kubernetes-engine/docs/how-to/intranode-visibility
+
+7. Ensure use of VPC-native clusters
+https://cloud.google.com/kubernetes-engine/docs/how-to/alias-ips
+
+
+8. Ensure clusters are created with Private Nodes
+https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters
+private_cluster_config in google_container_cluster a
+
+the private_cluster_config block supports:
+enable_private_nodes (Optional) - Enables the private cluster feature, 
+creating a private endpoint on the cluster. In a private cluster, 
+nodes only have RFC 1918 private addresses and communicate with the 
+master's private endpoint via private networking.
+
+9. Manage Kubernetes RBAC users with Google Groups for GKE
+https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control
+The authenticator_groups_config block supports:
+
+security_group - (Required) The name of the RBAC security group for use 
+with Google security groups in Kubernetes RBAC. Group name must be in format 
+gke-security-groups@yourdomain.com.
+
+10.Ensure use of Binary Authorization
+enable_binary_authorization - (Optional) Enable Binary Authorization for this 
+cluster. If enabled, all container images will be validated by Google Binary Authorization.
+
+
+

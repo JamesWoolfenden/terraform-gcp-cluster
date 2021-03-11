@@ -30,7 +30,7 @@ variable "subnetwork" {
 
 variable "ip_allocation_policy" {
   description = "Values to fill the cluster ip_allocation_policy block"
-  type        = map
+  type        = map(any)
 }
 
 variable "remove_default_node_pool" {
@@ -41,7 +41,7 @@ variable "remove_default_node_pool" {
 
 variable "private_cluster_config" {
   description = "Values to fill the cluster private_cluster_config block"
-  type        = map
+  type        = map(any)
 }
 
 variable "master_authorized_network_cidr" {
@@ -74,7 +74,7 @@ variable "maintenance_window" {
 
 variable "node_pool" {
   description = "Configuration of the Node hosts"
-  type        = map
+  type        = map(any)
 
   default = {
     name              = "default-pool"
@@ -94,4 +94,38 @@ variable "network_policy" {
   type        = bool
   default     = true
   description = "To enable the network policy"
+}
+
+variable "resource_labels" {
+  type = map(any)
+  default = {
+    "createdby" = "terraform"
+    module      = "terraform-gcp-cluster"
+  }
+
+}
+
+variable "pod_security_policy_config_enabled" {
+  type    = bool
+  default = true
+}
+
+variable "auto_repair" {
+  type    = bool
+  default = true
+}
+
+variable "auto_upgrade" {
+  type    = bool
+  default = true
+}
+
+variable "release_channel" {
+type=string
+description="Set the release channel UNSPECIFIED|RAPID|REGULAR|STABLE"
+default="STABLE"
+  validation {
+    condition=can(regex("UNSPECIFIED|RAPID|REGULAR|STABLE", var.release_channel))
+    error_message = "Release channel must be one of UNSPECIFIED|RAPID|REGULAR|STABLE."
+  }
 }

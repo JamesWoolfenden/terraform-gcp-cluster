@@ -2,7 +2,6 @@
 resource "google_container_cluster" "cluster" {
   #checkov:skip=CKV_GCP_13: "Ensure a client certificate is used by clients to authenticate to Kubernetes Engine Clusters"
   #checkov:skip=CKV_GCP_22: "Ensure Container-Optimized OS (cos) is used for Kubernetes Engine Clusters Node image"
-  provider           = google-beta
   name               = var.name
   location           = var.location
   initial_node_count = 1
@@ -19,6 +18,21 @@ resource "google_container_cluster" "cluster" {
   }
 
   remove_default_node_pool = var.remove_default_node_pool
+  
+ 
+
+  node_config {
+    workload_metadata_config {
+      node_metadata = "GKE_METADATA_SERVER"
+    }
+    shielded_instance_config {
+    enable_integrity_monitoring=true
+  }
+  }
+
+  release_channel {
+    channel=var.release_channel
+  }
 
   master_auth {
 
@@ -63,22 +77,7 @@ resource "google_container_cluster" "cluster" {
     enabled = var.pod_security_policy_config_enabled
   }
 
-  resource_labels = {
-    "createdby" = "terraform"
-  }
-
-}
-
-variable "resource_labels" {
-  type = map
-  default = {
-    "createdby" = "terraform"
-  }
-
+  resource_labels = var.resource_labels
 }
 
 
-variable "pod_security_policy_config_enabled" {
-  type    = bool
-  default = true
-}
