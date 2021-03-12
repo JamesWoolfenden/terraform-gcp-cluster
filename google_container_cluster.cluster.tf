@@ -9,7 +9,8 @@ resource "google_container_cluster" "cluster" {
 
   network    = var.network
   subnetwork = var.subnetwork
-
+  enable_intranode_visibility = true
+  
   ip_allocation_policy {
     cluster_ipv4_cidr_block       = var.ip_allocation_policy["cluster_ipv4_cidr_block"]
     cluster_secondary_range_name  = var.ip_allocation_policy["cluster_secondary_range_name"]
@@ -18,20 +19,21 @@ resource "google_container_cluster" "cluster" {
   }
 
   remove_default_node_pool = var.remove_default_node_pool
-  
- 
+
+  min_master_version = "1.12"
 
   node_config {
     workload_metadata_config {
       node_metadata = "GKE_METADATA_SERVER"
     }
     shielded_instance_config {
-    enable_integrity_monitoring=true
-  }
+      enable_integrity_monitoring = true
+      enable_secure_boot = true
+    }
   }
 
   release_channel {
-    channel=var.release_channel
+    channel = var.release_channel
   }
 
   master_auth {
