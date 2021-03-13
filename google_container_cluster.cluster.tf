@@ -18,20 +18,20 @@ resource "google_container_cluster" "cluster" {
   }
 
   remove_default_node_pool = var.remove_default_node_pool
-  
- 
+
+
 
   node_config {
     workload_metadata_config {
       node_metadata = "GKE_METADATA_SERVER"
     }
     shielded_instance_config {
-    enable_integrity_monitoring=true
-  }
+      enable_integrity_monitoring = true
+    }
   }
 
   release_channel {
-    channel=var.release_channel
+    channel = var.release_channel
   }
 
   master_auth {
@@ -78,6 +78,5 @@ resource "google_container_cluster" "cluster" {
   }
 
   resource_labels = var.resource_labels
+  type            = map
 }
-
-
