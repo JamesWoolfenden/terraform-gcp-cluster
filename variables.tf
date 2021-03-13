@@ -121,11 +121,11 @@ variable "auto_upgrade" {
 }
 
 variable "release_channel" {
-type=string
-description="Set the release channel UNSPECIFIED|RAPID|REGULAR|STABLE"
-default="STABLE"
+  type        = string
+  description = "Set the release channel UNSPECIFIED|RAPID|REGULAR|STABLE"
+  default     = "STABLE"
   validation {
-    condition=can(regex("UNSPECIFIED|RAPID|REGULAR|STABLE", var.release_channel))
+    condition     = can(regex("UNSPECIFIED|RAPID|REGULAR|STABLE", var.release_channel))
     error_message = "Release channel must be one of UNSPECIFIED|RAPID|REGULAR|STABLE."
   }
 }

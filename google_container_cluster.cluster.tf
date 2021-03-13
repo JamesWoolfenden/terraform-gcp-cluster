@@ -7,8 +7,9 @@ resource "google_container_cluster" "cluster" {
   initial_node_count = 1
   project            = data.google_project.project.name
 
-  network    = var.network
-  subnetwork = var.subnetwork
+  network                     = var.network
+  subnetwork                  = var.subnetwork
+  enable_intranode_visibility = true
 
   ip_allocation_policy {
     cluster_ipv4_cidr_block       = var.ip_allocation_policy["cluster_ipv4_cidr_block"]
@@ -19,7 +20,7 @@ resource "google_container_cluster" "cluster" {
 
   remove_default_node_pool = var.remove_default_node_pool
 
-
+  min_master_version = "1.12"
 
   node_config {
     workload_metadata_config {
@@ -27,6 +28,7 @@ resource "google_container_cluster" "cluster" {
     }
     shielded_instance_config {
       enable_integrity_monitoring = true
+      enable_secure_boot          = true
     }
   }
 
