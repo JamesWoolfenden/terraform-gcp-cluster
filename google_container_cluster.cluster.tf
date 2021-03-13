@@ -80,5 +80,4 @@ resource "google_container_cluster" "cluster" {
   }
 
   resource_labels = var.resource_labels
-  type            = map
 }
