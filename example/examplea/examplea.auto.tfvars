@@ -1,6 +1,5 @@
-name            = "test-cluster-1"
+name            = "cluster-1"
 region          = "us-central1"
-location        = "us-central1-a"
 project         = "examplea"
 network_project = "examplea"
 network         = "default"

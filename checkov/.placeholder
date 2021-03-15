@@ -71,10 +71,14 @@ security_group - (Required) The name of the RBAC security group for use
 with Google security groups in Kubernetes RBAC. Group name must be in format
 gke-security-groups@yourdomain.com.
 
+authenticator_groups_config/security_group has a value
+
+
 10.Ensure use of Binary Authorization
 CKV_GCP_66
 enable_binary_authorization - (Optional) Enable Binary Authorization for this
 cluster. If enabled, all container images will be validated by Google Binary Authorization.
+
 11. Ensure legacy Compute Engine instance metadata APIs are Disabled
 CKV_GCP_67
 "From GKE 1.12 onwards, disable-legacy-endpoints is set to true by the API"

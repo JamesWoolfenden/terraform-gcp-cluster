@@ -8,24 +8,19 @@ variable "region" {
   type        = string
 }
 
-variable "location" {
-  type        = string
-  description = "The location of the cluster"
+variable "zones" {
 }
 
-variable "network_project" {
+variable "project" {
   description = "The GCP project of the Network the cluster is in"
-  type        = string
 }
 
 variable "network" {
-  description = "The name of the VPC"
-  type        = string
+  description = "The VPC"
 }
 
 variable "subnetwork" {
   description = "The name of the sub-net to use"
-  type        = string
 }
 
 variable "ip_allocation_policy" {

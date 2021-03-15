@@ -2,13 +2,14 @@
 resource "google_container_cluster" "cluster" {
   #checkov:skip=CKV_GCP_13: "Ensure a client certificate is used by clients to authenticate to Kubernetes Engine Clusters"
   #checkov:skip=CKV_GCP_22: "Ensure Container-Optimized OS (cos) is used for Kubernetes Engine Clusters Node image"
-  name               = var.name
-  location           = var.location
-  initial_node_count = 1
-  project            = data.google_project.project.name
+  #checkov:skip=CKV_GCP_25:
+  name       = var.name
+  location   = var.zones.names[2]
+  project    = var.zones.project
+  network    = var.network.name
+  subnetwork = var.subnetwork.name
 
-  network                     = var.network
-  subnetwork                  = var.subnetwork
+  initial_node_count          = 1
   enable_intranode_visibility = true
 
   ip_allocation_policy {
@@ -19,18 +20,7 @@ resource "google_container_cluster" "cluster" {
   }
 
   remove_default_node_pool = var.remove_default_node_pool
-
-  min_master_version = "1.12"
-
-  node_config {
-    workload_metadata_config {
-      node_metadata = "GKE_METADATA_SERVER"
-    }
-    shielded_instance_config {
-      enable_integrity_monitoring = true
-      enable_secure_boot          = true
-    }
-  }
+  min_master_version       = "1.17"
 
   release_channel {
     channel = var.release_channel
@@ -59,11 +49,11 @@ resource "google_container_cluster" "cluster" {
     }
   }
 
-  private_cluster_config {
-    enable_private_nodes    = var.private_cluster_config["enable_private_nodes"]
-    enable_private_endpoint = var.private_cluster_config["enable_private_endpoint"]
-    master_ipv4_cidr_block  = var.private_cluster_config["master_ipv4_cidr_block"]
-  }
+  //private_cluster_config {
+  // enable_private_nodes    = var.private_cluster_config["enable_private_nodes"]
+  //  enable_private_endpoint = var.private_cluster_config["enable_private_endpoint"]
+  //  master_ipv4_cidr_block  = var.private_cluster_config["master_ipv4_cidr_block"]
+  //}
 
   master_authorized_networks_config {
     cidr_blocks {
@@ -71,7 +61,7 @@ resource "google_container_cluster" "cluster" {
     }
   }
 
-  enable_binary_authorization = true
+  enable_binary_authorization = false
 
   network_policy {
     enabled = true
