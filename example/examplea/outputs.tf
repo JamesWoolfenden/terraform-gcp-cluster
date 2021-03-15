@@ -1,15 +1,15 @@
 output "project" {
-  value=data.google_project.project
+  value = data.google_project.project
 }
 
 output "network" {
-  value=data.google_compute_network.gke_network
+  value = data.google_compute_network.gke_network
 }
 
 output "subnet" {
-  value=data.google_compute_subnetwork.gke_subnetwork
+  value = data.google_compute_subnetwork.gke_subnetwork
 }
 
 output "zones" {
-  value=data.google_compute_zones.available
+  value = data.google_compute_zones.available
 }

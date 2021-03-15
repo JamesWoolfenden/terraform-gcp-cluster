@@ -10,5 +10,5 @@ module "cluster" {
   region                         = var.region
   subnetwork                     = data.google_compute_subnetwork.gke_subnetwork
   network_policy_config_disabled = var.network_policy_config_disabled
-  zones=data.google_compute_zones.available
+  zones                          = data.google_compute_zones.available
 }

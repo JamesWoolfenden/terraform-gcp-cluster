@@ -1,7 +1,7 @@
 resource "google_container_node_pool" "nodepool" {
   #checkov:skip=CKV_GCP_22: "Ensure Container-Optimized OS (cos) is used for Kubernetes Engine Clusters Node image"
   #checkov:skip=CKV_GCP_25:
-  
+
   name     = var.node_pool["name"]
   location = var.zones.names[2]
   project  = var.zones.project

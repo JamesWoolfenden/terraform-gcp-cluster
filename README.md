@@ -43,11 +43,8 @@ No Modules.
 
 | Name |
 |------|
-| [google_compute_network](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/compute_network) |
-| [google_compute_subnetwork](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/compute_subnetwork) |
 | [google_container_cluster](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster) |
 | [google_container_node_pool](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool) |
-| [google_project](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/project) |
 
 ## Inputs
 
@@ -58,33 +55,26 @@ No Modules.
 | http\_load\_balancing\_disabled | Disable Http Load balancing | `bool` | `false` | no |
 | ip\_allocation\_policy | Values to fill the cluster ip\_allocation\_policy block | `map(any)` | n/a | yes |
 | kubernetes\_dashboard\_disabled | Switch on the Dashboard | `bool` | `false` | no |
-| location | The location of the cluster | `string` | n/a | yes |
 | maintenance\_window | n/a | `string` | `"00:30"` | no |
 | master\_authorized\_network\_cidr | The range of IPs that can connect to the Kubernetes master | `string` | n/a | yes |
 | name | The Name of the cluster | `string` | n/a | yes |
-| network | The name of the VPC | `string` | n/a | yes |
+| network | The VPC | `any` | n/a | yes |
 | network\_policy | To enable the network policy | `bool` | `true` | no |
 | network\_policy\_config\_disabled | Toggle network policy | `bool` | `false` | no |
-| network\_project | The GCP project of the Network the cluster is in | `string` | n/a | yes |
 | node\_pool | Configuration of the Node hosts | `map(any)` | <pre>{<br>  "auto_repair": "true",<br>  "auto_upgrade": "true",<br>  "autoscaling_max": "10",<br>  "autoscaling_min": "1",<br>  "disk_size_gb": "10",<br>  "disk_type": "pd-standard",<br>  "machine_type": "n1-standard-2",<br>  "max_pods_per_node": "32",<br>  "name": "default-pool",<br>  "node_count": "1"<br>}</pre> | no |
 | pod\_security\_policy\_config\_enabled | n/a | `bool` | `true` | no |
 | private\_cluster\_config | Values to fill the cluster private\_cluster\_config block | `map(any)` | n/a | yes |
+| project | The GCP project of the Network the cluster is in | `any` | n/a | yes |
 | region | The GCP region | `string` | n/a | yes |
 | release\_channel | Set the release channel UNSPECIFIED\|RAPID\|REGULAR\|STABLE | `string` | `"STABLE"` | no |
 | remove\_default\_node\_pool | An override to remove the node pool, doesnt make much sense to me either | `bool` | `true` | no |
 | resource\_labels | n/a | `map(any)` | <pre>{<br>  "createdby": "terraform",<br>  "module": "terraform-gcp-cluster"<br>}</pre> | no |
-| subnetwork | The name of the sub-net to use | `string` | n/a | yes |
+| subnetwork | The name of the sub-net to use | `any` | n/a | yes |
+| zones | n/a | `any` | n/a | yes |
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| gateway\_address | The IP address of the gateway. |
-| ip\_cidr\_range | The IP address range that machines in this network are assigned to, represented as a CIDR block. |
-| network | The network name or resource link to the parent network of this subnetwork. |
-| network\_description | Description of this subnetwork. |
-| private\_ip\_google\_access | Whether the VMs in this sub-net can access Google services without assigned external IP addresses. |
-| secondary\_ip\_range | An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. Structure is documented below. |
+No output.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Related Projects
