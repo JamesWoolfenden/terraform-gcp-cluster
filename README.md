@@ -70,8 +70,9 @@ No Modules.
 | pod\_security\_policy\_config\_enabled | n/a | `bool` | `true` | no |
 | private\_cluster\_config | Values to fill the cluster private\_cluster\_config block | `map(any)` | n/a | yes |
 | region | The GCP region | `string` | n/a | yes |
+| release\_channel | Set the release channel UNSPECIFIED\|RAPID\|REGULAR\|STABLE | `string` | `"STABLE"` | no |
 | remove\_default\_node\_pool | An override to remove the node pool, doesnt make much sense to me either | `bool` | `true` | no |
-| resource\_labels | n/a | `map(any)` | <pre>{<br>  "createdby": "terraform"<br>}</pre> | no |
+| resource\_labels | n/a | `map(any)` | <pre>{<br>  "createdby": "terraform",<br>  "module": "terraform-gcp-cluster"<br>}</pre> | no |
 | subnetwork | The name of the sub-net to use | `string` | n/a | yes |
 
 ## Outputs

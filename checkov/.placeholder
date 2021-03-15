@@ -12,7 +12,7 @@ property Release Channels in clusters
  release_channel {
     channel=var.release_channel
   }
-  
+
 3. Ensure Shielded GKE Nodes are Enabled
 
 enable_shielded_nodes=true
@@ -28,9 +28,14 @@ shielded_instance_config {
 
 5. Ensure Secure Boot for Shielded GKE Nodes is Enabled
 check exists and set as defaults to false
-shielded_instance_config {
-enable_secure_boot =true
+
+```
+node_config {
+   shielded_instance_config {
+      enable_secure_boot =true
+   }
 }
+```
 
 CKV_GCP_73
 
@@ -52,9 +57,9 @@ https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters
 private_cluster_config in google_container_cluster a
 
 the private_cluster_config block supports:
-enable_private_nodes (Optional) - Enables the private cluster feature, 
-creating a private endpoint on the cluster. In a private cluster, 
-nodes only have RFC 1918 private addresses and communicate with the 
+enable_private_nodes (Optional) - Enables the private cluster feature,
+creating a private endpoint on the cluster. In a private cluster,
+nodes only have RFC 1918 private addresses and communicate with the
 master's private endpoint via private networking.
 
 9. Manage Kubernetes RBAC users with Google Groups for GKE
@@ -62,19 +67,16 @@ https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control
 
 CKV_GCP_65
 The authenticator_groups_config block supports:
-security_group - (Required) The name of the RBAC security group for use 
-with Google security groups in Kubernetes RBAC. Group name must be in format 
+security_group - (Required) The name of the RBAC security group for use
+with Google security groups in Kubernetes RBAC. Group name must be in format
 gke-security-groups@yourdomain.com.
 
 10.Ensure use of Binary Authorization
 CKV_GCP_66
-enable_binary_authorization - (Optional) Enable Binary Authorization for this 
+enable_binary_authorization - (Optional) Enable Binary Authorization for this
 cluster. If enabled, all container images will be validated by Google Binary Authorization.
-
-11. Ensure legacy Compute Engine instance metadata APIs are Disabled 
+11. Ensure legacy Compute Engine instance metadata APIs are Disabled
 CKV_GCP_67
 "From GKE 1.12 onwards, disable-legacy-endpoints is set to true by the API"
-
 min_master_version =1.12?
 master_version
-
