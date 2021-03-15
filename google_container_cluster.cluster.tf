@@ -7,10 +7,10 @@ resource "google_container_cluster" "cluster" {
   initial_node_count = 1
   project            = data.google_project.project.name
 
-  network    = var.network
-  subnetwork = var.subnetwork
+  network                     = var.network
+  subnetwork                  = var.subnetwork
   enable_intranode_visibility = true
-  
+
   ip_allocation_policy {
     cluster_ipv4_cidr_block       = var.ip_allocation_policy["cluster_ipv4_cidr_block"]
     cluster_secondary_range_name  = var.ip_allocation_policy["cluster_secondary_range_name"]
@@ -28,7 +28,7 @@ resource "google_container_cluster" "cluster" {
     }
     shielded_instance_config {
       enable_integrity_monitoring = true
-      enable_secure_boot = true
+      enable_secure_boot          = true
     }
   }
 
@@ -70,6 +70,8 @@ resource "google_container_cluster" "cluster" {
       cidr_block = var.master_authorized_network_cidr
     }
   }
+
+  enable_binary_authorization = true
 
   network_policy {
     enabled = true
