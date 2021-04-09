@@ -1,8 +1,9 @@
 
 resource "google_container_cluster" "cluster" {
-  #checkov:skip=CKV_GCP_13: "Ensure a client certificate is used by clients to authenticate to Kubernetes Engine Clusters"
-  #checkov:skip=CKV_GCP_22: "Ensure Container-Optimized OS (cos) is used for Kubernetes Engine Clusters Node image"
-  #checkov:skip=CKV_GCP_25:
+  # checkov:skip=CKV_GCP_13:
+  # checkov:skip=CKV_GCP_22: node config handles this
+  # checkov:skip=CKV_GCP_69: node config handles this
+
   name       = var.name
   location   = var.zones.names[2]
   project    = var.zones.project
@@ -19,6 +20,10 @@ resource "google_container_cluster" "cluster" {
     services_secondary_range_name = var.ip_allocation_policy["services_secondary_range_name"]
   }
 
+  authenticator_groups_config {
+    security_group = var.RBAC_group_name
+  }
+
   remove_default_node_pool = var.remove_default_node_pool
   min_master_version       = "1.17"
 
@@ -27,7 +32,6 @@ resource "google_container_cluster" "cluster" {
   }
 
   master_auth {
-
     client_certificate_config {
       issue_client_certificate = false
     }
@@ -49,11 +53,11 @@ resource "google_container_cluster" "cluster" {
     }
   }
 
-  //private_cluster_config {
-  // enable_private_nodes    = var.private_cluster_config["enable_private_nodes"]
-  //  enable_private_endpoint = var.private_cluster_config["enable_private_endpoint"]
-  //  master_ipv4_cidr_block  = var.private_cluster_config["master_ipv4_cidr_block"]
-  //}
+  private_cluster_config {
+    enable_private_nodes    = true
+    enable_private_endpoint = var.private_cluster_config["enable_private_endpoint"]
+    master_ipv4_cidr_block  = var.private_cluster_config["master_ipv4_cidr_block"]
+  }
 
   master_authorized_networks_config {
     cidr_blocks {
@@ -61,7 +65,8 @@ resource "google_container_cluster" "cluster" {
     }
   }
 
-  enable_binary_authorization = false
+  enable_binary_authorization = true
+  enable_shielded_nodes       = true
 
   network_policy {
     enabled = true

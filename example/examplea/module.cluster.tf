@@ -4,11 +4,12 @@ module "cluster" {
   master_authorized_network_cidr = module.ip.cidr
   name                           = var.name
   network                        = data.google_compute_network.gke_network
-  project                        = data.google_project.project
+  network_policy_config_disabled = var.network_policy_config_disabled
   node_pool                      = var.node_pool
   private_cluster_config         = var.private_cluster_config
-  region                         = var.region
-  subnetwork                     = data.google_compute_subnetwork.gke_subnetwork
-  network_policy_config_disabled = var.network_policy_config_disabled
-  zones                          = data.google_compute_zones.available
+  project                        = data.google_project.project
+  #RBAC_group_name                = "gke-security-groups@yourdomain.com"
+  region     = var.region
+  subnetwork = data.google_compute_subnetwork.gke_subnetwork
+  zones      = data.google_compute_zones.available
 }

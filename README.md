@@ -33,48 +33,48 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| google | n/a |
+| <a name="provider_google"></a> [google](#provider\_google) | n/a |
 
 ## Modules
 
-No Modules.
+No modules.
 
 ## Resources
 
-| Name |
-|------|
-| [google_container_cluster](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster) |
-| [google_container_node_pool](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool) |
+| Name | Type |
+|------|------|
+| [google_container_cluster.cluster](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster) | resource |
+| [google_container_node_pool.nodepool](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| auto\_repair | n/a | `bool` | `true` | no |
-| auto\_upgrade | n/a | `bool` | `true` | no |
-| http\_load\_balancing\_disabled | Disable Http Load balancing | `bool` | `false` | no |
-| ip\_allocation\_policy | Values to fill the cluster ip\_allocation\_policy block | `map(any)` | n/a | yes |
-| kubernetes\_dashboard\_disabled | Switch on the Dashboard | `bool` | `false` | no |
-| maintenance\_window | n/a | `string` | `"00:30"` | no |
-| master\_authorized\_network\_cidr | The range of IPs that can connect to the Kubernetes master | `string` | n/a | yes |
-| name | The Name of the cluster | `string` | n/a | yes |
-| network | The VPC | `any` | n/a | yes |
-| network\_policy | To enable the network policy | `bool` | `true` | no |
-| network\_policy\_config\_disabled | Toggle network policy | `bool` | `false` | no |
-| node\_pool | Configuration of the Node hosts | `map(any)` | <pre>{<br>  "auto_repair": "true",<br>  "auto_upgrade": "true",<br>  "autoscaling_max": "10",<br>  "autoscaling_min": "1",<br>  "disk_size_gb": "10",<br>  "disk_type": "pd-standard",<br>  "machine_type": "n1-standard-2",<br>  "max_pods_per_node": "32",<br>  "name": "default-pool",<br>  "node_count": "1"<br>}</pre> | no |
-| pod\_security\_policy\_config\_enabled | n/a | `bool` | `true` | no |
-| private\_cluster\_config | Values to fill the cluster private\_cluster\_config block | `map(any)` | n/a | yes |
-| project | The GCP project of the Network the cluster is in | `any` | n/a | yes |
-| region | The GCP region | `string` | n/a | yes |
-| release\_channel | Set the release channel UNSPECIFIED\|RAPID\|REGULAR\|STABLE | `string` | `"STABLE"` | no |
-| remove\_default\_node\_pool | An override to remove the node pool, doesnt make much sense to me either | `bool` | `true` | no |
-| resource\_labels | n/a | `map(any)` | <pre>{<br>  "createdby": "terraform",<br>  "module": "terraform-gcp-cluster"<br>}</pre> | no |
-| subnetwork | The name of the sub-net to use | `any` | n/a | yes |
-| zones | n/a | `any` | n/a | yes |
+| <a name="input_RBAC_group_name"></a> [RBAC\_group\_name](#input\_RBAC\_group\_name) | n/a | `string` | `""` | no |
+| <a name="input_auto_upgrade"></a> [auto\_upgrade](#input\_auto\_upgrade) | n/a | `bool` | `true` | no |
+| <a name="input_http_load_balancing_disabled"></a> [http\_load\_balancing\_disabled](#input\_http\_load\_balancing\_disabled) | Disable Http Load balancing | `bool` | `false` | no |
+| <a name="input_ip_allocation_policy"></a> [ip\_allocation\_policy](#input\_ip\_allocation\_policy) | Values to fill the cluster ip\_allocation\_policy block | `map(any)` | n/a | yes |
+| <a name="input_kubernetes_dashboard_disabled"></a> [kubernetes\_dashboard\_disabled](#input\_kubernetes\_dashboard\_disabled) | Switch on the Dashboard | `bool` | `false` | no |
+| <a name="input_maintenance_window"></a> [maintenance\_window](#input\_maintenance\_window) | n/a | `string` | `"00:30"` | no |
+| <a name="input_master_authorized_network_cidr"></a> [master\_authorized\_network\_cidr](#input\_master\_authorized\_network\_cidr) | The range of IPs that can connect to the Kubernetes master | `string` | n/a | yes |
+| <a name="input_name"></a> [name](#input\_name) | The Name of the cluster | `string` | n/a | yes |
+| <a name="input_network"></a> [network](#input\_network) | The VPC | `any` | n/a | yes |
+| <a name="input_network_policy"></a> [network\_policy](#input\_network\_policy) | To enable the network policy | `bool` | `true` | no |
+| <a name="input_network_policy_config_disabled"></a> [network\_policy\_config\_disabled](#input\_network\_policy\_config\_disabled) | Toggle network policy | `bool` | `false` | no |
+| <a name="input_node_pool"></a> [node\_pool](#input\_node\_pool) | Configuration of the Node hosts | `map(any)` | <pre>{<br>  "auto_repair": "true",<br>  "auto_upgrade": "true",<br>  "autoscaling_max": "10",<br>  "autoscaling_min": "1",<br>  "disk_size_gb": "10",<br>  "disk_type": "pd-standard",<br>  "machine_type": "n1-standard-2",<br>  "max_pods_per_node": "32",<br>  "name": "default-pool",<br>  "node_count": "1"<br>}</pre> | no |
+| <a name="input_pod_security_policy_config_enabled"></a> [pod\_security\_policy\_config\_enabled](#input\_pod\_security\_policy\_config\_enabled) | n/a | `bool` | `true` | no |
+| <a name="input_private_cluster_config"></a> [private\_cluster\_config](#input\_private\_cluster\_config) | Values to fill the cluster private\_cluster\_config block | `map(any)` | n/a | yes |
+| <a name="input_project"></a> [project](#input\_project) | The GCP project of the Network the cluster is in | `any` | n/a | yes |
+| <a name="input_region"></a> [region](#input\_region) | The GCP region | `string` | n/a | yes |
+| <a name="input_release_channel"></a> [release\_channel](#input\_release\_channel) | Set the release channel UNSPECIFIED\|RAPID\|REGULAR\|STABLE | `string` | `"STABLE"` | no |
+| <a name="input_remove_default_node_pool"></a> [remove\_default\_node\_pool](#input\_remove\_default\_node\_pool) | An override to remove the node pool, doesnt make much sense to me either | `bool` | `true` | no |
+| <a name="input_resource_labels"></a> [resource\_labels](#input\_resource\_labels) | n/a | `map(any)` | <pre>{<br>  "createdby": "terraform",<br>  "module": "terraform-gcp-cluster"<br>}</pre> | no |
+| <a name="input_subnetwork"></a> [subnetwork](#input\_subnetwork) | The name of the sub-net to use | `any` | n/a | yes |
+| <a name="input_zones"></a> [zones](#input\_zones) | n/a | `any` | n/a | yes |
 
 ## Outputs
 
-No output.
+No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Related Projects

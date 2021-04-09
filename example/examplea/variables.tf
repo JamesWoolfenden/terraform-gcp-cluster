@@ -1,6 +1,5 @@
 variable "name" {
   type = string
-
 }
 
 variable "region" {

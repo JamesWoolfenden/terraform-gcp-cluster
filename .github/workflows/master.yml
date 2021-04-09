@@ -10,7 +10,6 @@ on:
       - master
 env:
   terraform: 0.14.8
-  terraform-docs: 0.11.2
   tf_target_dir: example/examplea
   branch: master
 jobs:

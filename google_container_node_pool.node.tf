@@ -1,7 +1,4 @@
 resource "google_container_node_pool" "nodepool" {
-  #checkov:skip=CKV_GCP_22: "Ensure Container-Optimized OS (cos) is used for Kubernetes Engine Clusters Node image"
-  #checkov:skip=CKV_GCP_25:
-
   name     = var.node_pool["name"]
   location = var.zones.names[2]
   project  = var.zones.project
@@ -14,6 +11,7 @@ resource "google_container_node_pool" "nodepool" {
     machine_type = var.node_pool["machine_type"]
     disk_size_gb = var.node_pool["disk_size_gb"]
     disk_type    = var.node_pool["disk_type"]
+    image_type   = "COS"
 
     oauth_scopes = [
       "https://www.googleapis.com/auth/compute",
@@ -21,6 +19,14 @@ resource "google_container_node_pool" "nodepool" {
       "https://www.googleapis.com/auth/logging.write",
       "https://www.googleapis.com/auth/monitoring",
     ]
+    workload_metadata_config {
+      node_metadata = "GKE_METADATA_SERVER"
+    }
+
+    shielded_instance_config {
+      enable_secure_boot          = true
+      enable_integrity_monitoring = true
+    }
   }
 
   autoscaling {
@@ -29,8 +35,7 @@ resource "google_container_node_pool" "nodepool" {
   }
 
   management {
-    auto_repair  = var.auto_repair
-    auto_upgrade = var.auto_upgrade
+    auto_repair  = true
+    auto_upgrade = true
   }
-
 }

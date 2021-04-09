@@ -105,11 +105,6 @@ variable "pod_security_policy_config_enabled" {
   default = true
 }
 
-variable "auto_repair" {
-  type    = bool
-  default = true
-}
-
 variable "auto_upgrade" {
   type    = bool
   default = true
@@ -123,4 +118,9 @@ variable "release_channel" {
     condition     = can(regex("UNSPECIFIED|RAPID|REGULAR|STABLE", var.release_channel))
     error_message = "Release channel must be one of UNSPECIFIED|RAPID|REGULAR|STABLE."
   }
+}
+
+variable "RBAC_group_name" {
+  type    = string
+  default = ""
 }
