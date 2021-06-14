@@ -6,7 +6,7 @@ resource "google_container_node_pool" "nodepool" {
 
   node_count        = var.node_pool["node_count"]
   max_pods_per_node = var.node_pool["max_pods_per_node"]
-
+  #tfsec:ignore:GCP012
   node_config {
     machine_type = var.node_pool["machine_type"]
     disk_size_gb = var.node_pool["disk_size_gb"]
