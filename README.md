@@ -24,6 +24,24 @@ module "cluster" {
 }
 ```
 
+## Costs
+
+```text
+Monthly cost estimate
+
+Project: JamesWoolfenden/terraform-gcp-cluster/example/examplea
+
+ Name                                                      Monthly Qty  Unit   Monthly Cost
+
+ module.cluster.google_container_cluster.cluster
+ └─ Cluster management fee                                         730  hours        $73.00
+
+ module.cluster.google_container_node_pool.nodepool
+ ├─ Instance usage (Linux/UNIX, on-demand, n1-standard-2)          730  hours        $48.54
+ └─ Standard provisioned storage (pd-standard)                      10  GiB           $0.40
+
+ OVERALL TOTAL                                                                      $121.94
+```
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
