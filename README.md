@@ -1,7 +1,7 @@
 # terraform-gcp-cluster
 
 [![Build Status](https://github.com/JamesWoolfenden/terraform-gcp-cluster/workflows/Verify%20and%20Bump/badge.svg?branch=master)](https://github.com/JamesWoolfenden/terraform-gcp-cluster)
-[![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-gcp-bastion.svg)](https://github.com/JamesWoolfenden/terraform-gcp-cluster/releases/latest)
+[![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-gcp-cluster.svg)](https://github.com/JamesWoolfenden/terraform-gcp-cluster/releases/latest)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![pre-commit](https://img.shields.io/badge/checkov-verified-brightgreen)](https://www.checkov.io/)
 
@@ -95,6 +95,28 @@ No modules.
 No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
+## Role and Permissions
+
+<!-- BEGINNING OF PRE-COMMIT-PIKE DOCS HOOK -->
+The Terraform resource required is:
+
+```golang
+resource "google_project_iam_custom_role" "terraformXVlBzgba" {
+  project     = "examplea"
+  role_id     = "terraform_pike"
+  title       = "terraformXVlBzgba"
+  description = "A user with least privileges"
+  permissions = [
+    "compute.networks.get",
+    "compute.subnetworks.get",
+    "compute.zones.list",
+    "resourcemanager.projects.get"
+  ]
+}
+
+```
+<!-- END OF PRE-COMMIT-PIKE DOCS HOOK -->
+
 ## Related Projects
 
 Check out these related projects.
@@ -105,13 +127,13 @@ Check out these related projects.
 
 **Got a question?**
 
-File a GitHub [issue](https://github.com/jameswoolfenden/terraform-aws-bastion/issues).
+File a GitHub [issue](https://github.com/jameswoolfenden/terraform-aws-cluster/issues).
 
 ## Contributing
 
 ### Bug Reports & Feature Requests
 
-Please use the [issue tracker](https://github.com/jameswoolfenden/terraform-aws-bastion/issues) to report any bugs or file feature requests.
+Please use the [issue tracker](https://github.com/jameswoolfenden/terraform-aws-cluster/issues) to report any bugs or file feature requests.
 
 ## Copyrights
 
@@ -146,11 +168,3 @@ under the License.
 
 [jameswoolfenden_homepage]: https://github.com/jameswoolfenden
 [jameswoolfenden_avatar]: https://github.com/jameswoolfenden.png?size=150
-[github]: https://github.com/jameswoolfenden
-[linkedin]: https://www.linkedin.com/in/jameswoolfenden/
-[twitter]: https://twitter.com/JimWoolfenden
-[share_twitter]: https://twitter.com/intent/tweet/?text=terraform-aws-bastion&url=https://github.com/jameswoolfenden/terraform-aws-bastion
-[share_linkedin]: https://www.linkedin.com/shareArticle?mini=true&title=terraform-aws-bastion&url=https://github.com/jameswoolfenden/terraform-aws-bastion
-[share_reddit]: https://reddit.com/submit/?url=https://github.com/jameswoolfenden/terraform-aws-bastion
-[share_facebook]: https://facebook.com/sharer/sharer.php?u=https://github.com/jameswoolfenden/terraform-aws-bastion
-[share_email]: mailto:?subject=terraform-aws-bastion&body=https://github.com/jameswoolfenden/terraform-aws-bastion
