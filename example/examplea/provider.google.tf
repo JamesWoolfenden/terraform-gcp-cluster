@@ -2,5 +2,4 @@ provider "google" {
 }
 
 provider "http" {
-
 }

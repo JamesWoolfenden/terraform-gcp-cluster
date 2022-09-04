@@ -65,15 +65,10 @@ resource "google_container_cluster" "cluster" {
     }
   }
 
-  enable_binary_authorization = true
-  enable_shielded_nodes       = true
+  enable_shielded_nodes = true
 
   network_policy {
     enabled = true
-  }
-
-  pod_security_policy_config {
-    enabled = var.pod_security_policy_config_enabled
   }
 
   resource_labels = var.resource_labels
