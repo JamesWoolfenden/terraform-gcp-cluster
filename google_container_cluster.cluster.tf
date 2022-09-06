@@ -3,6 +3,8 @@ resource "google_container_cluster" "cluster" {
   # checkov:skip=CKV_GCP_13:
   # checkov:skip=CKV_GCP_22: node config handles this
   # checkov:skip=CKV_GCP_69: node config handles this
+  # checkov:skip=CKV_GCP_66:legacy check
+  provider = google-beta
 
   name       = var.name
   location   = var.zones.names[2]
@@ -72,4 +74,9 @@ resource "google_container_cluster" "cluster" {
   }
 
   resource_labels = var.resource_labels
+
+  pod_security_policy_config {
+    enabled = true
+  }
+
 }
