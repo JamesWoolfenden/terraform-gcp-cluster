@@ -51,7 +51,7 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | n/a |
+| <a name="provider_google"></a> [google](#provider\_google) | 4.34.0 |
 | <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | n/a |
 
 ## Modules
@@ -102,25 +102,23 @@ No outputs.
 The Terraform resource required is:
 
 ```golang
-resource "google_project_iam_custom_role" "terraformXVlBzgba" {
-  project     = "examplea"
+
+resource "google_project_iam_custom_role" "terraform_pike" {
+  project     = "pike"
   role_id     = "terraform_pike"
-  title       = "terraformXVlBzgba"
+  title       = "terraform_pike"
   description = "A user with least privileges"
   permissions = [
     "compute.instanceGroupManagers.get",
-    "compute.networks.get",
-    "compute.subnetworks.get",
-    "compute.zones.list",
     "container.clusters.create",
     "container.clusters.delete",
     "container.clusters.get",
     "container.clusters.update",
     "container.operations.get",
-    "iam.serviceAccounts.actAs",
-    "resourcemanager.projects.get"
+    "iam.serviceAccounts.actAs"
   ]
 }
+
 
 ```
 <!-- END OF PRE-COMMIT-PIKE DOCS HOOK -->
