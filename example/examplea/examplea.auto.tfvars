@@ -1,6 +1,6 @@
 name            = "cluster-1"
 region          = "us-central1"
-project         = "pike-361314"
+project         = "pike-gcp"
 network_project = "pike"
 network         = "default"
 subnetwork      = "default"

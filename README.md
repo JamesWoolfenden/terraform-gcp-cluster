@@ -1,6 +1,6 @@
 # terraform-gcp-cluster
 
-[![Build Status](https://github.com/JamesWoolfenden/terraform-gcp-cluster/workflows/Verify%20and%20Bump/badge.svg?branch=master)](https://github.com/JamesWoolfenden/terraform-gcp-cluster)
+[![Build Status](https://github.com/JamesWoolfenden/terraform-gcp-cluster/workflows/Verify/badge.svg?branch=master)](https://github.com/JamesWoolfenden/terraform-gcp-cluster)
 [![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-gcp-cluster.svg)](https://github.com/JamesWoolfenden/terraform-gcp-cluster/releases/latest)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![pre-commit](https://img.shields.io/badge/checkov-verified-brightgreen)](https://www.checkov.io/)

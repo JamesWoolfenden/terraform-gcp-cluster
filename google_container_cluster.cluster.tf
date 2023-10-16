@@ -1,4 +1,3 @@
-
 resource "google_container_cluster" "cluster" {
   # checkov:skip=CKV_GCP_13:
   # checkov:skip=CKV_GCP_22: node config handles this
