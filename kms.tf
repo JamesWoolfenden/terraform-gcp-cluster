@@ -5,8 +5,12 @@ resource "google_kms_key_ring" "cluster" {
 }
 
 resource "google_kms_crypto_key" "cluster" {
-  name     = var.name
-  key_ring = google_kms_key_ring.cluster.id
+  name            = var.name
+  key_ring        = google_kms_key_ring.cluster.id
+  rotation_period = "7776000s"
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "google_kms_crypto_key_iam_binding" "cluster" {

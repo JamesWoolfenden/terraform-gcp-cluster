@@ -10,6 +10,7 @@ resource "google_container_node_pool" "nodepool" {
   node_config {
     preemptible  = true
     machine_type = "e2-medium"
+    image_type   = "COS"
 
     service_account = google_service_account.default.email
     oauth_scopes = [
