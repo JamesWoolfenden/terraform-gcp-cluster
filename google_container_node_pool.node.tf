@@ -6,7 +6,7 @@ resource "google_container_node_pool" "nodepool" {
 
   node_count        = var.node_pool["node_count"]
   max_pods_per_node = var.node_pool["max_pods_per_node"]
-  #tfsec:ignore:GCP012
+
   node_config {
     preemptible  = true
     machine_type = "e2-medium"

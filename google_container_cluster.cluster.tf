@@ -1,10 +1,6 @@
 resource "google_container_cluster" "cluster" {
   provider = google-beta
-  # checkov:skip=CKV_GCP_13:
-  # checkov:skip=CKV_GCP_22: node config handles this
-  # checkov:skip=CKV_GCP_69: node config handles this
-  # checkov:skip=CKV_GCP_66:legacy check
-
+  #checkov:skip=CKV_GCP_69:node config is on nodepool
   name       = var.name
   location   = local.location
   network    = var.network.name
@@ -85,14 +81,8 @@ resource "google_container_cluster" "cluster" {
 
   resource_labels = var.resource_labels
 
-  deletion_protection = var.deletion_protection
-
   pod_security_policy_config {
     enabled = true
   }
 }
 
-variable "deletion_protection" {
-  type    = bool
-  default = false
-}
