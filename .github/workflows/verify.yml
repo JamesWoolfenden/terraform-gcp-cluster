@@ -63,9 +63,8 @@ jobs:
         with:
           python-version: 3.11
       - run: |
-          pip3 install lastversion
-          lastversion terraform-docs --assets -d --verbose
           mkdir "$GITHUB_WORKSPACE/bin"
+          wget https://github.com/terraform-docs/terraform-docs/releases/download/v0.16.0/terraform-docs-v0.16.0-linux-amd64.tar.gz
           tar -xvf terraform-docs*.tar.gz --directory "$GITHUB_WORKSPACE/bin"
           chmod +x "$GITHUB_WORKSPACE/bin/terraform-docs"
           wget https://github.com/rhysd/actionlint/releases/download/v1.6.23/actionlint_1.6.23_linux_amd64.tar.gz

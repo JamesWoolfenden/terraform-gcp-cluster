@@ -1,6 +1,6 @@
 resource "google_container_node_pool" "nodepool" {
   name     = var.node_pool["name"]
-  location = var.zones.names[2]
+  location = local.location
   project  = var.zones.project
   cluster  = google_container_cluster.cluster.name
 
@@ -8,11 +8,10 @@ resource "google_container_node_pool" "nodepool" {
   max_pods_per_node = var.node_pool["max_pods_per_node"]
   #tfsec:ignore:GCP012
   node_config {
-    machine_type = var.node_pool["machine_type"]
-    disk_size_gb = var.node_pool["disk_size_gb"]
-    disk_type    = var.node_pool["disk_type"]
-    image_type   = "COS"
+    preemptible  = true
+    machine_type = "e2-medium"
 
+    service_account = google_service_account.default.email
     oauth_scopes = [
       "https://www.googleapis.com/auth/compute",
       "https://www.googleapis.com/auth/devstorage.read_only",
@@ -39,4 +38,5 @@ resource "google_container_node_pool" "nodepool" {
     auto_repair  = true
     auto_upgrade = true
   }
+
 }

@@ -8,7 +8,6 @@ module "cluster" {
   node_pool                      = var.node_pool
   private_cluster_config         = var.private_cluster_config
   project                        = data.google_project.project
-  RBAC_group_name                = "gke-security-groups@gmail.com"
   region                         = var.region
   subnetwork                     = data.google_compute_subnetwork.gke_subnetwork
   zones                          = data.google_compute_zones.available

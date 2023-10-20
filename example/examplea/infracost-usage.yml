@@ -1,8 +1,0 @@
-version: 0.1
-resource_usage:
-  module.cluster.google_container_cluster.cluster:
-    node_pool[0]:
-      nodes: 0
-    nodes: 0
-  module.cluster.google_container_node_pool.nodepool:
-    nodes: 0

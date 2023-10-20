@@ -21,11 +21,7 @@ variable "ip_allocation_policy" {
   description = "Values to fill the cluster ip_allocation_policy block"
   type        = map(any)
 }
-variable "remove_default_node_pool" {
-  description = "An override to remove the node pool, doesnt make much sense to me either"
-  type        = bool
-  default     = true
-}
+
 variable "private_cluster_config" {
   description = "Values to fill the cluster private_cluster_config block"
   type        = map(any)
@@ -100,7 +96,7 @@ variable "release_channel" {
     error_message = "Release channel must be one of UNSPECIFIED|RAPID|REGULAR|STABLE."
   }
 }
-variable "RBAC_group_name" {
-  type    = string
-  default = ""
-}
+# variable "RBAC_group_name" {
+#   type    = string
+#   default = ""
+# }

@@ -1,6 +1,5 @@
 name            = "cluster-1"
 region          = "us-central1"
-project         = "pike-gcp"
 network_project = "pike"
 network         = "default"
 subnetwork      = "default"
@@ -27,8 +26,8 @@ private_cluster_config = {
   enable_private_endpoint = true
   enable_private_nodes    = true
 }
-master_authorized_network_cidr = ""
-maintenance_window             = null
+
+maintenance_window = null
 node_pool = {
   name              = "default-pool"
   node_count        = "1"

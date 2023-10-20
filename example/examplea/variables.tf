@@ -4,9 +4,7 @@ variable "name" {
 variable "region" {
   type = string
 }
-variable "project" {
-  type = string
-}
+
 variable "network_project" {
   type = string
 }
@@ -21,9 +19,6 @@ variable "ip_allocation_policy" {
 }
 variable "remove_default_node_pool" {
   type = bool
-}
-variable "master_authorized_network_cidr" {
-  type = string
 }
 variable "http_load_balancing_disabled" {
   type = bool

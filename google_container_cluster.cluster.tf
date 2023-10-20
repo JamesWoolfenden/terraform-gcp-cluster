@@ -3,13 +3,22 @@ resource "google_container_cluster" "cluster" {
   # checkov:skip=CKV_GCP_22: node config handles this
   # checkov:skip=CKV_GCP_69: node config handles this
   # checkov:skip=CKV_GCP_66:legacy check
-  provider = google-beta
 
   name       = var.name
-  location   = var.zones.names[2]
-  project    = var.zones.project
+  location   = local.location
   network    = var.network.name
   subnetwork = var.subnetwork.name
+
+  binary_authorization {
+    evaluation_mode = "PROJECT_SINGLETON_POLICY_ENFORCE"
+  }
+
+  workload_identity_config {
+    workload_pool = "${var.project.project_id}.svc.id.goog"
+  }
+  release_channel {
+    channel = var.release_channel
+  }
 
   initial_node_count          = 1
   enable_intranode_visibility = true
@@ -21,16 +30,13 @@ resource "google_container_cluster" "cluster" {
     services_secondary_range_name = var.ip_allocation_policy["services_secondary_range_name"]
   }
 
-  authenticator_groups_config {
-    security_group = var.RBAC_group_name
-  }
+  # authenticator_groups_config {
+  #   security_group = var.RBAC_group_name
+  # }
 
-  remove_default_node_pool = var.remove_default_node_pool
-  min_master_version       = "1.17"
+  remove_default_node_pool = true
+  min_master_version       = "1.27"
 
-  release_channel {
-    channel = var.release_channel
-  }
 
   master_auth {
     client_certificate_config {
@@ -54,17 +60,21 @@ resource "google_container_cluster" "cluster" {
     }
   }
 
-  private_cluster_config {
-    enable_private_nodes    = true
-    enable_private_endpoint = var.private_cluster_config["enable_private_endpoint"]
-    master_ipv4_cidr_block  = var.private_cluster_config["master_ipv4_cidr_block"]
-  }
+  # private_cluster_config {
+  #   enable_private_nodes    = true
+  #   enable_private_endpoint = var.private_cluster_config["enable_private_endpoint"]
+  #   master_ipv4_cidr_block  = var.private_cluster_config["master_ipv4_cidr_block"]
+  # }
 
-  master_authorized_networks_config {
-    cidr_blocks {
-      cidr_block = var.master_authorized_network_cidr
-    }
+  database_encryption {
+    state    = "ENCRYPTED"
+    key_name = google_kms_crypto_key.cluster.id
   }
+  # master_authorized_networks_config {
+  #   cidr_blocks {
+  #     cidr_block = var.master_authorized_network_cidr
+  #   }
+  # }
 
   enable_shielded_nodes = true
 
@@ -74,8 +84,10 @@ resource "google_container_cluster" "cluster" {
 
   resource_labels = var.resource_labels
 
-  pod_security_policy_config {
-    enabled = true
-  }
+  deletion_protection = var.deletion_protection
+}
 
+variable "deletion_protection" {
+  type    = bool
+  default = false
 }

@@ -52,7 +52,6 @@ No requirements.
 | Name | Version |
 |------|---------|
 | <a name="provider_google"></a> [google](#provider\_google) | n/a |
-| <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | n/a |
 
 ## Modules
 
@@ -62,15 +61,19 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [google-beta_google_container_cluster.cluster](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/google_container_cluster) | resource |
+| [google_container_cluster.cluster](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster) | resource |
 | [google_container_node_pool.nodepool](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool) | resource |
+| [google_kms_crypto_key.cluster](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_crypto_key) | resource |
+| [google_kms_crypto_key_iam_binding.cluster](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_crypto_key_iam_binding) | resource |
+| [google_kms_key_ring.cluster](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_key_ring) | resource |
+| [google_service_account.default](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_RBAC_group_name"></a> [RBAC\_group\_name](#input\_RBAC\_group\_name) | n/a | `string` | `""` | no |
 | <a name="input_auto_upgrade"></a> [auto\_upgrade](#input\_auto\_upgrade) | n/a | `bool` | `true` | no |
+| <a name="input_deletion_protection"></a> [deletion\_protection](#input\_deletion\_protection) | n/a | `bool` | `false` | no |
 | <a name="input_http_load_balancing_disabled"></a> [http\_load\_balancing\_disabled](#input\_http\_load\_balancing\_disabled) | Disable Http Load balancing | `bool` | `false` | no |
 | <a name="input_ip_allocation_policy"></a> [ip\_allocation\_policy](#input\_ip\_allocation\_policy) | Values to fill the cluster ip\_allocation\_policy block | `map(any)` | n/a | yes |
 | <a name="input_kubernetes_dashboard_disabled"></a> [kubernetes\_dashboard\_disabled](#input\_kubernetes\_dashboard\_disabled) | Switch on the Dashboard | `bool` | `false` | no |
@@ -86,7 +89,6 @@ No modules.
 | <a name="input_project"></a> [project](#input\_project) | The GCP project of the Network the cluster is in | `any` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The GCP region | `string` | n/a | yes |
 | <a name="input_release_channel"></a> [release\_channel](#input\_release\_channel) | Set the release channel UNSPECIFIED\|RAPID\|REGULAR\|STABLE | `string` | `"STABLE"` | no |
-| <a name="input_remove_default_node_pool"></a> [remove\_default\_node\_pool](#input\_remove\_default\_node\_pool) | An override to remove the node pool, doesnt make much sense to me either | `bool` | `true` | no |
 | <a name="input_resource_labels"></a> [resource\_labels](#input\_resource\_labels) | n/a | `map(any)` | <pre>{<br>  "createdby": "terraform",<br>  "module": "terraform-gcp-cluster"<br>}</pre> | no |
 | <a name="input_subnetwork"></a> [subnetwork](#input\_subnetwork) | The name of the sub-net to use | `any` | n/a | yes |
 | <a name="input_zones"></a> [zones](#input\_zones) | n/a | `any` | n/a | yes |
@@ -109,13 +111,26 @@ resource "google_project_iam_custom_role" "terraform_pike" {
   title       = "terraform_pike"
   description = "A user with least privileges"
   permissions = [
+    "cloudkms.cryptoKeyVersions.destroy",
+    "cloudkms.cryptoKeyVersions.list",
+    "cloudkms.cryptoKeys.create",
+    "cloudkms.cryptoKeys.get",
+    "cloudkms.cryptoKeys.getIamPolicy",
+    "cloudkms.cryptoKeys.setIamPolicy",
+    "cloudkms.cryptoKeys.update",
+    "cloudkms.keyRings.create",
+    "cloudkms.keyRings.get",
     "compute.instanceGroupManagers.get",
     "container.clusters.create",
     "container.clusters.delete",
     "container.clusters.get",
     "container.clusters.update",
     "container.operations.get",
-    "iam.serviceAccounts.actAs"
+    "iam.serviceAccounts.actAs",
+    "iam.serviceAccounts.create",
+    "iam.serviceAccounts.delete",
+    "iam.serviceAccounts.get",
+    "iam.serviceAccounts.update"
   ]
 }
 
@@ -143,7 +158,7 @@ Please use the [issue tracker](https://github.com/jameswoolfenden/terraform-aws-
 
 ## Copyrights
 
-Copyright © 2019-2022 James Woolfenden
+Copyright © 2019-2023 James Woolfenden
 
 ## License
 
