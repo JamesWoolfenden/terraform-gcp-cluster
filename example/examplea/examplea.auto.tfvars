@@ -1,5 +1,6 @@
 name            = "cluster-1"
 region          = "us-central1"
+location        = "us-central1-a"
 network_project = "pike"
 network         = "default"
 subnetwork      = "default"
@@ -30,7 +31,7 @@ private_cluster_config = {
 maintenance_window = null
 node_pool = {
   name              = "default-pool"
-  node_count        = "1"
+  node_count        = "4"
   machine_type      = "n1-standard-2"
   disk_size_gb      = "10"
   disk_type         = "pd-standard"

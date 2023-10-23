@@ -24,6 +24,24 @@ module "cluster" {
 }
 ```
 
+Connecting:
+
+```bash
+gcloud components install gke-gcloud-auth-plugin
+gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE --project $PROJECT_ID
+```
+
+e.g.  gcloud container clusters get-credentials cluster-1 --zone us-central1-a --project pike-gcp
+
+[drop from GP or add GP as control plane assess]
+
+$ kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user=$(gcloud config get-value core/account)
+
+Install Istio
+$ brew install istioctl
+$ istioctl install
+
+
 ## Costs
 
 ```text
@@ -51,7 +69,7 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 5.2.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | n/a |
 | <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | n/a |
 
 ## Modules
@@ -64,9 +82,6 @@ No modules.
 |------|------|
 | [google-beta_google_container_cluster.cluster](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/google_container_cluster) | resource |
 | [google_container_node_pool.nodepool](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool) | resource |
-| [google_kms_crypto_key.cluster](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_crypto_key) | resource |
-| [google_kms_crypto_key_iam_binding.cluster](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_crypto_key_iam_binding) | resource |
-| [google_kms_key_ring.cluster](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_key_ring) | resource |
 | [google_service_account.default](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
 
 ## Inputs
@@ -74,10 +89,11 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_auto_upgrade"></a> [auto\_upgrade](#input\_auto\_upgrade) | n/a | `bool` | `true` | no |
-| <a name="input_deletion_protection"></a> [deletion\_protection](#input\_deletion\_protection) | n/a | `bool` | `false` | no |
 | <a name="input_http_load_balancing_disabled"></a> [http\_load\_balancing\_disabled](#input\_http\_load\_balancing\_disabled) | Disable Http Load balancing | `bool` | `false` | no |
 | <a name="input_ip_allocation_policy"></a> [ip\_allocation\_policy](#input\_ip\_allocation\_policy) | Values to fill the cluster ip\_allocation\_policy block | `map(any)` | n/a | yes |
+| <a name="input_key_name"></a> [key\_name](#input\_key\_name) | Changing key name as keys and key rings are undeletable | `string` | n/a | yes |
 | <a name="input_kubernetes_dashboard_disabled"></a> [kubernetes\_dashboard\_disabled](#input\_kubernetes\_dashboard\_disabled) | Switch on the Dashboard | `bool` | `false` | no |
+| <a name="input_location"></a> [location](#input\_location) | n/a | `string` | n/a | yes |
 | <a name="input_maintenance_window"></a> [maintenance\_window](#input\_maintenance\_window) | n/a | `string` | `"00:30"` | no |
 | <a name="input_master_authorized_network_cidr"></a> [master\_authorized\_network\_cidr](#input\_master\_authorized\_network\_cidr) | The range of IPs that can connect to the Kubernetes master | `string` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | The Name of the cluster | `string` | n/a | yes |
@@ -96,7 +112,9 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_service_account"></a> [service\_account](#output\_service\_account) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Role and Permissions
@@ -112,15 +130,6 @@ resource "google_project_iam_custom_role" "terraform_pike" {
   title       = "terraform_pike"
   description = "A user with least privileges"
   permissions = [
-    "cloudkms.cryptoKeyVersions.destroy",
-    "cloudkms.cryptoKeyVersions.list",
-    "cloudkms.cryptoKeys.create",
-    "cloudkms.cryptoKeys.get",
-    "cloudkms.cryptoKeys.getIamPolicy",
-    "cloudkms.cryptoKeys.setIamPolicy",
-    "cloudkms.cryptoKeys.update",
-    "cloudkms.keyRings.create",
-    "cloudkms.keyRings.get",
     "compute.instanceGroupManagers.get",
     "container.clusters.create",
     "container.clusters.delete",

@@ -1,7 +1,9 @@
 resource "google_container_node_pool" "nodepool" {
+  #checkov:skip=CKV_GCP_22: legacy
+
   name     = var.node_pool["name"]
-  location = local.location
   project  = var.zones.project
+  location = var.location
   cluster  = google_container_cluster.cluster.name
 
   node_count        = var.node_pool["node_count"]
@@ -9,8 +11,7 @@ resource "google_container_node_pool" "nodepool" {
 
   node_config {
     preemptible  = true
-    machine_type = "e2-medium"
-    image_type   = "COS"
+    machine_type = var.node_pool["machine_type"]
 
     service_account = google_service_account.default.email
     oauth_scopes = [

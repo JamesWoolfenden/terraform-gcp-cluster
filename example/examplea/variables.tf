@@ -38,3 +38,7 @@ variable "node_pool" {
 variable "private_cluster_config" {
   type = map(any)
 }
+
+variable "location" {
+  type = string
+}

@@ -9,6 +9,13 @@ module "cluster" {
   private_cluster_config         = var.private_cluster_config
   project                        = data.google_project.project
   region                         = var.region
+  location                       = var.location
   subnetwork                     = data.google_compute_subnetwork.gke_subnetwork
   zones                          = data.google_compute_zones.available
+  key_name                       = google_kms_crypto_key.cluster.id
+}
+
+resource "random_string" "random" {
+  length  = 4
+  special = false
 }

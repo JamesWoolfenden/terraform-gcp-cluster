@@ -100,3 +100,12 @@ variable "release_channel" {
 #   type    = string
 #   default = ""
 # }
+
+variable "key_name" {
+  type        = string
+  description = "Changing key name as keys and key rings are undeletable"
+}
+
+variable "location" {
+  type = string
+}

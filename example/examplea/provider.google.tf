@@ -1,5 +1,5 @@
 provider "google" {
-  project     = "pike-gcp"
+  project = "pike-gcp"
 }
 provider "http" {
 }
