@@ -1,3 +1,3 @@
 module "ip" {
-  source = "git::https://github.com/JamesWoolfenden/terraform-http-ip.git?ref=93eda6395be69106add05e31a118ff226e1ddb4d"
+  source = "git::https://github.com/JamesWoolfenden/terraform-http-ip.git?ref=2f3cef24e667fb840a3d3481f5a1aaa5a1ac7d28" #v0.3.14
 }
