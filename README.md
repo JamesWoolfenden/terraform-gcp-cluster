@@ -33,7 +33,7 @@ No requirements.
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_google"></a> [google](#provider\_google) | n/a |
 | <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | n/a |
 
@@ -44,7 +44,7 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [google-beta_google_container_cluster.cluster](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/google_container_cluster) | resource |
 | [google_container_node_pool.nodepool](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool) | resource |
 | [google_service_account.default](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
@@ -52,7 +52,7 @@ No modules.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_auto_upgrade"></a> [auto\_upgrade](#input\_auto\_upgrade) | n/a | `bool` | `true` | no |
 | <a name="input_http_load_balancing_disabled"></a> [http\_load\_balancing\_disabled](#input\_http\_load\_balancing\_disabled) | Disable Http Load balancing | `bool` | `false` | no |
 | <a name="input_ip_allocation_policy"></a> [ip\_allocation\_policy](#input\_ip\_allocation\_policy) | Values to fill the cluster ip\_allocation\_policy block | `map(any)` | n/a | yes |
@@ -65,20 +65,20 @@ No modules.
 | <a name="input_network"></a> [network](#input\_network) | The VPC | `any` | n/a | yes |
 | <a name="input_network_policy"></a> [network\_policy](#input\_network\_policy) | To enable the network policy | `bool` | `true` | no |
 | <a name="input_network_policy_config_disabled"></a> [network\_policy\_config\_disabled](#input\_network\_policy\_config\_disabled) | Toggle network policy | `bool` | `false` | no |
-| <a name="input_node_pool"></a> [node\_pool](#input\_node\_pool) | Configuration of the Node hosts | `map(any)` | <pre>{<br>  "auto_repair": "true",<br>  "auto_upgrade": "true",<br>  "autoscaling_max": "10",<br>  "autoscaling_min": "1",<br>  "disk_size_gb": "10",<br>  "disk_type": "pd-standard",<br>  "machine_type": "n1-standard-2",<br>  "max_pods_per_node": "32",<br>  "name": "default-pool",<br>  "node_count": "1"<br>}</pre> | no |
+| <a name="input_node_pool"></a> [node\_pool](#input\_node\_pool) | Configuration of the Node hosts | `map(any)` | <pre>{<br/>  "auto_repair": "true",<br/>  "auto_upgrade": "true",<br/>  "autoscaling_max": "10",<br/>  "autoscaling_min": "1",<br/>  "disk_size_gb": "10",<br/>  "disk_type": "pd-standard",<br/>  "machine_type": "n1-standard-2",<br/>  "max_pods_per_node": "32",<br/>  "name": "default-pool",<br/>  "node_count": "1"<br/>}</pre> | no |
 | <a name="input_pod_security_policy_config_enabled"></a> [pod\_security\_policy\_config\_enabled](#input\_pod\_security\_policy\_config\_enabled) | n/a | `bool` | `true` | no |
 | <a name="input_private_cluster_config"></a> [private\_cluster\_config](#input\_private\_cluster\_config) | Values to fill the cluster private\_cluster\_config block | `map(any)` | n/a | yes |
 | <a name="input_project"></a> [project](#input\_project) | The GCP project of the Network the cluster is in | `any` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The GCP region | `string` | n/a | yes |
 | <a name="input_release_channel"></a> [release\_channel](#input\_release\_channel) | Set the release channel UNSPECIFIED\|RAPID\|REGULAR\|STABLE | `string` | `"STABLE"` | no |
-| <a name="input_resource_labels"></a> [resource\_labels](#input\_resource\_labels) | n/a | `map(any)` | <pre>{<br>  "createdby": "terraform",<br>  "module": "terraform-gcp-cluster"<br>}</pre> | no |
+| <a name="input_resource_labels"></a> [resource\_labels](#input\_resource\_labels) | n/a | `map(any)` | <pre>{<br/>  "createdby": "terraform",<br/>  "module": "terraform-gcp-cluster"<br/>}</pre> | no |
 | <a name="input_subnetwork"></a> [subnetwork](#input\_subnetwork) | The name of the sub-net to use | `any` | n/a | yes |
 | <a name="input_zones"></a> [zones](#input\_zones) | n/a | `any` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_service_account"></a> [service\_account](#output\_service\_account) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
