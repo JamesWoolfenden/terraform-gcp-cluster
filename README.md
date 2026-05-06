@@ -25,42 +25,6 @@ module "cluster" {
 }
 ```
 
-Connecting:
-
-```bash
-gcloud components install gke-gcloud-auth-plugin
-gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE --project $PROJECT_ID
-```
-
-e.g.  gcloud container clusters get-credentials cluster-1 --zone us-central1-a --project pike-gcp
-
-[drop from GP or add GP as control plane assess]
-
-$ kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user=$(gcloud config get-value core/account)
-
-Install Istio
-$ brew install istioctl
-$ istioctl install
-
-
-## Costs
-
-```text
-Monthly cost estimate
-
-Project: JamesWoolfenden/terraform-gcp-cluster/example/examplea
-
- Name                                                      Monthly Qty  Unit   Monthly Cost
-
- module.cluster.google_container_cluster.cluster
- └─ Cluster management fee                                         730  hours        $73.00
-
- module.cluster.google_container_node_pool.nodepool
- ├─ Instance usage (Linux/UNIX, on-demand, n1-standard-2)          730  hours        $48.54
- └─ Standard provisioned storage (pd-standard)                      10  GiB           $0.40
-
- OVERALL TOTAL                                                                      $121.94
-```
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
@@ -126,7 +90,7 @@ The Terraform resource required is:
 ```golang
 
 resource "google_project_iam_custom_role" "terraform_pike" {
-  project     = "pike"
+  project     = "pike-477416"
   role_id     = "terraform_pike"
   title       = "terraform_pike"
   description = "A user with least privileges"
@@ -169,7 +133,7 @@ Please use the [issue tracker](https://github.com/jameswoolfenden/terraform-aws-
 
 ## Copyrights
 
-Copyright © 2019-2023 James Woolfenden
+Copyright © 2019-2026 James Woolfenden
 
 ## License
 
