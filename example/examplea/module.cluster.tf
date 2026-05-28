@@ -1,3 +1,4 @@
+# holden:ignore:HLD_TF_026 — examples intentionally use ../../ to reference the local module root
 module "cluster" {
   source                         = "../../"
   ip_allocation_policy           = var.ip_allocation_policy
