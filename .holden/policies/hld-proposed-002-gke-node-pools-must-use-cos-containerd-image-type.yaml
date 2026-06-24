@@ -1,0 +1,23 @@
+id: HLD_PROPOSED_002
+name: GKE node pools must use COS_CONTAINERD image type
+principle: supply-chain
+severity: HIGH
+rationale: |
+  The COS image type uses the deprecated Docker container runtime and was removed
+  from GKE in version 1.29. Node pools provisioned with image_type = "COS" on
+  GKE 1.29+ will fail to create. COS_CONTAINERD uses containerd as the runtime,
+  which is the supported standard. HLD_GCP_109 permits both values; this rule
+  closes the gap by enforcing the current-generation image exclusively.
+remediation: |
+  Set image_type explicitly to COS_CONTAINERD:
+  ```hcl
+  resource "google_container_node_pool" "main" {
+    node_config {
+      image_type = "COS_CONTAINERD"
+    }
+  }
+  ```
+resources:
+  google_container_node_pool:
+    path: node_config.image_type
+    equals: COS_CONTAINERD

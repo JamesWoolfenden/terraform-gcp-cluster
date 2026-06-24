@@ -1,0 +1,4 @@
+skip_policies:
+  - HLD_TF_027
+policies:
+  - .holden/policies

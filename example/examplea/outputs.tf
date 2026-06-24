@@ -1,16 +1,24 @@
 output "project" {
-  value = data.google_project.project
+  description = "The Google Cloud project data."
+  value       = data.google_project.this
 }
+
 output "network" {
-  value = data.google_compute_network.gke_network
+  description = "The GKE VPC network resource."
+  value       = google_compute_network.gke_network
 }
+
 output "subnet" {
-  value = data.google_compute_subnetwork.gke_subnetwork
+  description = "The GKE subnetwork resource."
+  value       = google_compute_subnetwork.gke_subnetwork
 }
+
 output "zones" {
-  value = data.google_compute_zones.available
+  description = "The available compute zones for GKE."
+  value       = data.google_compute_zones.available
 }
 
 output "cluster" {
-  value = module.cluster
+  description = "The GKE cluster module output."
+  value       = module.cluster
 }

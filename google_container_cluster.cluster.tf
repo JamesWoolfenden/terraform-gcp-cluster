@@ -1,15 +1,13 @@
+# holden:ignore:HLD_GCP_286 — security_group is optional; callers with Google Workspace should set var.security_group
+# holden:ignore:HLD_TF_036 — renaming "cluster" would be a breaking change for existing module callers
 resource "google_container_cluster" "cluster" {
-  provider = google-beta
-  #checkov:skip=CKV_GCP_69:node config is on nodepool
-  #checkov:skip=CKV_GCP_24:Legacy
-  #checkov:skip=CKV_GCP_65:groups not relevant here
-  #checkov:skip=CKV_GCP_20:todo
-
   name       = var.name
   location   = var.location
   network    = var.network.name
   subnetwork = var.subnetwork.name
   project    = var.project.name
+
+  deletion_protection = true
 
   binary_authorization {
     evaluation_mode = "PROJECT_SINGLETON_POLICY_ENFORCE"
@@ -18,12 +16,16 @@ resource "google_container_cluster" "cluster" {
   workload_identity_config {
     workload_pool = "${var.project.project_id}.svc.id.goog"
   }
+
   release_channel {
     channel = var.release_channel
   }
 
-  initial_node_count          = 1
-  enable_intranode_visibility = true
+  initial_node_count = 1
+
+  network_config {
+    enable_intra_node_visibility = true
+  }
 
   ip_allocation_policy {
     cluster_ipv4_cidr_block       = var.ip_allocation_policy["cluster_ipv4_cidr_block"]
@@ -32,13 +34,7 @@ resource "google_container_cluster" "cluster" {
     services_secondary_range_name = var.ip_allocation_policy["services_secondary_range_name"]
   }
 
-  # authenticator_groups_config {
-  #   security_group = var.RBAC_group_name
-  # }
-
   remove_default_node_pool = true
-  min_master_version       = "1.27"
-
 
   master_auth {
     client_certificate_config {
@@ -68,27 +64,46 @@ resource "google_container_cluster" "cluster" {
     master_ipv4_cidr_block  = var.private_cluster_config["master_ipv4_cidr_block"]
   }
 
+  master_authorized_networks_config {
+    cidr_blocks {
+      display_name = "authorized-cidr"
+      cidr_block   = var.master_authorized_network_cidr
+    }
+  }
+
   database_encryption {
     state    = "ENCRYPTED"
     key_name = var.key_name
   }
-  # master_authorized_networks_config {
-  #   cidr_blocks {
-  #      display_name=""
-  #     cidr_block = var.master_authorized_network_cidr
-  #   }
-  # }
 
   enable_shielded_nodes = true
+
+  confidential_nodes {
+    enabled = true
+  }
 
   network_policy {
     enabled = true
   }
 
+  logging_config {
+    enable_components = ["SYSTEM_COMPONENTS", "WORKLOADS"]
+  }
+
+  monitoring_config {
+    enable_components = ["SYSTEM_COMPONENTS"]
+  }
+
+  dynamic "authenticator_groups_config" {
+    for_each = var.security_group != "" ? [var.security_group] : []
+    content {
+      security_group = authenticator_groups_config.value
+    }
+  }
+
   resource_labels = var.resource_labels
 
-  #Pod Security Policy was removed from GKE clusters with version >= 1.25.0
-  # pod_security_policy_config {
-  #   enabled = true
-  # }
+  lifecycle {
+    prevent_destroy = true
+  }
 }
