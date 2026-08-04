@@ -1,0 +1,31 @@
+{
+  "findings": [
+    {
+      "confidence": "high",
+      "explanation": "google_kms_crypto_key.cluster is the key used for database_encryption on google_container_cluster.cluster (wired via module.cluster.tf:17 key_name = google_kms_crypto_key.cluster.id -> cluster.tf database_encryption.key_name), i.e. the key that encrypts Kubernetes Secrets at the etcd layer. Its IAM binding (kms.tf:28-35) correctly grants roles/cloudkms.cryptoKeyEncrypterDecrypter to the GKE control-plane service agent (service-PROJECT_NUMBER@container-engine-robot.iam.gserviceaccount.com, the only identity GCP requires for this), but ALSO grants it to module.cluster.service_account.email \u2014 the node pool's own custom service account (google_service_account.default), the identity every node's kubelet runs as. Nodes/kubelet have no legitimate need to decrypt the etcd secrets-encryption key; the analogous binding for the node-pool boot-disk key (kms.tf:37-43) correctly grants only the Compute Engine service agent, not this SA, confirming the .cluster binding is the outlier. If a node or a workload capable of exfiltrating the node's credentials (e.g. via a container escape, since workload_metadata_config already restricts direct pod access to GKE_METADATA-brokered identities) is compromised, it gains a documented path to decrypt the key protecting every Secret in the cluster \u2014 a direct escalation past the database_encryption control that's otherwise correctly configured.",
+      "file": "example/examplea/kms.tf",
+      "first_seen": "2026-08-04",
+      "fixable": false,
+      "id": "HOLDEN_AI_002",
+      "last_seen": "2026-08-04",
+      "line": 33,
+      "principle": "key-management",
+      "related_resources": [
+        "google_kms_crypto_key.cluster",
+        "google_container_cluster.cluster",
+        "module.cluster.service_account"
+      ],
+      "remediation": "Remove \"serviceAccount:${module.cluster.service_account.email}\" from google_kms_crypto_key_iam_binding.cluster's members list (kms.tf:33) unless there is a documented reason the node pool SA needs to decrypt the etcd encryption key directly \u2014 none is evident from this configuration.",
+      "resource": "google_kms_crypto_key_iam_binding.cluster",
+      "severity": "HIGH",
+      "status": "fixed",
+      "suppression_reason": null,
+      "title": "Node pool's own service account is granted decrypt access to the cluster's etcd/secrets encryption key",
+      "unresolved_since": "2026-08-04"
+    }
+  ],
+  "scan_date": "2026-08-04T00:00:00Z",
+  "scan_path": ".",
+  "suggested_policies": [],
+  "suggested_suppressions": []
+}

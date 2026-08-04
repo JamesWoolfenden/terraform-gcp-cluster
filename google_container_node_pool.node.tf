@@ -38,7 +38,11 @@ resource "google_container_node_pool" "nodepool" {
   }
 
   management {
-    auto_repair  = true
-    auto_upgrade = true
+    auto_repair  = lookup(var.node_pool, "auto_repair", true)
+    auto_upgrade = lookup(var.node_pool, "auto_upgrade", true)
+  }
+
+  lifecycle {
+    ignore_changes = [node_count]
   }
 }

@@ -1,0 +1,41 @@
+{
+  "findings": [
+    {
+      "confidence": "high",
+      "explanation": "The node pool sets both node_count and an autoscaling block. Once the cluster autoscaler resizes the pool in response to load, node_count in state drifts from var.node_pool[\"node_count\"]. Without lifecycle.ignore_changes = [node_count], a subsequent terraform apply plans to resize the pool back to the configured value, undoing the autoscaler's decision and potentially evicting workloads under load.",
+      "file": "google_container_node_pool.node.tf",
+      "first_seen": "2026-08-04",
+      "fix": "lifecycle {\n    ignore_changes = [node_count]\n  }",
+      "fixable": true,
+      "id": "HOLDEN_BP_001",
+      "last_seen": "2026-08-04",
+      "line": 8,
+      "principle": "reliability",
+      "remediation": "Add a lifecycle block ignoring node_count so Terraform stops fighting the autoscaler.",
+      "resource": "google_container_node_pool.nodepool",
+      "severity": "MEDIUM",
+      "status": "fixed",
+      "title": "Node pool has no lifecycle.ignore_changes on node_count while autoscaling is enabled"
+    },
+    {
+      "confidence": "high",
+      "explanation": "variables.tf's node_pool default map includes auto_repair and auto_upgrade keys (README's generated table documents them as inputs), but the management block hardcoded both to true, ignoring any value a caller supplies. Callers reasonably believe these are configurable when they are not.",
+      "file": "google_container_node_pool.node.tf",
+      "first_seen": "2026-08-04",
+      "fix": "management {\n    auto_repair  = lookup(var.node_pool, \"auto_repair\", true)\n    auto_upgrade = lookup(var.node_pool, \"auto_upgrade\", true)\n  }",
+      "fixable": true,
+      "id": "HOLDEN_BP_002",
+      "last_seen": "2026-08-04",
+      "line": 40,
+      "principle": "maintainability",
+      "remediation": "Wire management.auto_repair / management.auto_upgrade from var.node_pool via lookup(), defaulting to true so existing callers are unaffected.",
+      "resource": "google_container_node_pool.nodepool",
+      "severity": "LOW",
+      "status": "fixed",
+      "title": "node_pool variable exposes auto_repair/auto_upgrade keys that the resource silently ignores"
+    }
+  ],
+  "scan_date": "2026-08-04T00:00:00Z",
+  "scan_path": ".",
+  "suggested_policies": []
+}

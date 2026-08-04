@@ -5,7 +5,7 @@ resource "google_container_cluster" "cluster" {
   location   = var.location
   network    = var.network.name
   subnetwork = var.subnetwork.name
-  project    = var.project.name
+  project    = var.project.project_id
 
   deletion_protection = true
 
@@ -23,9 +23,8 @@ resource "google_container_cluster" "cluster" {
 
   initial_node_count = 1
 
-  network_config {
-    enable_intra_node_visibility = true
-  }
+  enable_intranode_visibility = true
+  datapath_provider           = "ADVANCED_DATAPATH"
 
   ip_allocation_policy {
     cluster_ipv4_cidr_block       = var.ip_allocation_policy["cluster_ipv4_cidr_block"]

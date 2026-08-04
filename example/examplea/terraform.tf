@@ -5,9 +5,14 @@ terraform {
       source  = "hashicorp/google"
       version = "7.36.0"
     }
-    google-beta = {
-      source  = "hashicorp/google-beta"
-      version = "7.37.0"
+
+    http = {
+      source  = "hashicorp/http"
+      version = "3.4.0"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.5.1"
     }
   }
   required_version = ">= 1.5.0"

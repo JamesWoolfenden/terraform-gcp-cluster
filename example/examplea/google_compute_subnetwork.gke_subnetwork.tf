@@ -18,6 +18,6 @@ resource "google_compute_subnetwork" "gke_subnetwork" {
   log_config {
     aggregation_interval = "INTERVAL_5_MIN"
     flow_sampling        = 0.5
-    metadata             = "INCLUDE_ALL"
+    metadata             = "INCLUDE_ALL_METADATA"
   }
 }

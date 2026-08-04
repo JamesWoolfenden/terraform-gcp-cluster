@@ -30,7 +30,6 @@ resource "google_kms_crypto_key_iam_binding" "cluster" {
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
   members = [
     "serviceAccount:service-${data.google_project.this.number}@container-engine-robot.iam.gserviceaccount.com",
-    "serviceAccount:${module.cluster.service_account.email}"
   ]
 }
 

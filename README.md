@@ -46,6 +46,8 @@ No modules.
 | ---- | ---- |
 | [google_container_cluster.cluster](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster) | resource |
 | [google_container_node_pool.nodepool](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool) | resource |
+| [google_project_iam_member.log_writer](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
+| [google_project_iam_member.metric_writer](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
 | [google_service_account.default](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
 
 ## Inputs
@@ -86,7 +88,7 @@ No modules.
 The Terraform resource required is:
 
 ```golang
-
+# apply role
 resource "google_project_iam_custom_role" "terraform_pike" {
   project     = "pike-477416"
   role_id     = "terraform_pike"
@@ -103,7 +105,24 @@ resource "google_project_iam_custom_role" "terraform_pike" {
     "iam.serviceAccounts.create",
     "iam.serviceAccounts.delete",
     "iam.serviceAccounts.get",
-    "iam.serviceAccounts.update"
+    "iam.serviceAccounts.update",
+    "resourcemanager.projects.getIamPolicy",
+    "resourcemanager.projects.setIamPolicy"
+  ]
+}
+
+# plan role
+resource "google_project_iam_custom_role" "terraform_pike_plan" {
+  project     = "pike-477416"
+  role_id     = "terraform_pike_plan"
+  title       = "terraform_pike_plan"
+  description = "A user with least privileges"
+  permissions = [
+    "compute.instanceGroupManagers.get",
+    "container.clusters.get",
+    "container.operations.get",
+    "iam.serviceAccounts.get",
+    "resourcemanager.projects.getIamPolicy"
   ]
 }
 

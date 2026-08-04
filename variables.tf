@@ -24,6 +24,7 @@ variable "project" {
     error_message = "project must be an object with project_id and name attributes (e.g. data.google_project.this)."
   }
 }
+
 variable "network" {
   description = "The VPC"
   type        = any
@@ -150,6 +151,8 @@ variable "release_channel" {
 variable "key_name" {
   type        = string
   description = "Changing key name as keys and key rings are undeletable"
+  sensitive   = true
+
   validation {
     condition     = length(var.key_name) > 0
     error_message = "The key_name variable must not be empty."
@@ -178,6 +181,8 @@ variable "security_group" {
 variable "boot_disk_kms_key" {
   type        = string
   description = "Customer-managed KMS key for node pool boot disk encryption (full resource name)"
+  sensitive   = true
+
   validation {
     condition     = length(var.boot_disk_kms_key) > 0
     error_message = "boot_disk_kms_key must not be empty."
