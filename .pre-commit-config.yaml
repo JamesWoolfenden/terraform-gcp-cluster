@@ -47,12 +47,12 @@ repos:
     -   id: holden
         name: holden
         description: Scan Terraform for security and best-practices issues with the locally installed holden CLI.
-        entry: holden scan . example/examplea --deep
+        entry: holden scan example/examplea --deep
         language: system
         pass_filenames: false
         files: \.tf$
 -   repo: https://github.com/jameswoolfenden/pike
-    rev: 741f708218a37ce07fa50556298e0a1dace541ac # v1.0.9
+    rev: 2dcc68be027ecb386e78467d0a7765d547fa6c99 # v1.0.11
     hooks:
     -   id: pike-docs-go
         args: ["readme","-d", ".", "-i"]

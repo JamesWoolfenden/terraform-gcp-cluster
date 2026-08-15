@@ -25,6 +25,19 @@ resource "google_container_cluster" "cluster" {
 
   enable_intranode_visibility = true
   datapath_provider           = "ADVANCED_DATAPATH"
+  enable_legacy_abac          = false
+  enable_kubernetes_alpha     = false
+
+  control_plane_endpoints_config {
+    dns_endpoint_config {
+      allow_external_traffic = false
+    }
+  }
+
+  rbac_binding_config {
+    enable_insecure_binding_system_authenticated   = false
+    enable_insecure_binding_system_unauthenticated = false
+  }
 
   ip_allocation_policy {
     cluster_ipv4_cidr_block       = var.ip_allocation_policy["cluster_ipv4_cidr_block"]

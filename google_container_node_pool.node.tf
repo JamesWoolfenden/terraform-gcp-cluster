@@ -1,4 +1,3 @@
-# holden:ignore:HLD_PROPOSED_004 — disk_size_gb comes from var.node_pool; default is 100 GB, validated by variable constraint
 resource "google_container_node_pool" "nodepool" {
   name     = var.node_pool["name"]
   project  = var.zones.project
@@ -26,9 +25,17 @@ resource "google_container_node_pool" "nodepool" {
       mode = "GKE_METADATA"
     }
 
+    metadata = {
+      disable-legacy-endpoints = "true"
+    }
+
     shielded_instance_config {
       enable_secure_boot          = true
       enable_integrity_monitoring = true
+    }
+
+    kubelet_config {
+      insecure_kubelet_readonly_port_enabled = "FALSE"
     }
   }
 

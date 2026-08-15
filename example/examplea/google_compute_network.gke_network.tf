@@ -1,3 +1,4 @@
+# holden:ignore:HLD_GCP_303: to drive the example only
 resource "google_compute_network" "gke_network" {
   name                            = var.network
   auto_create_subnetworks         = false
@@ -21,4 +22,5 @@ resource "google_compute_router_nat" "gke_network" {
     enable = true
     filter = "ERRORS_ONLY"
   }
+  enable_dynamic_port_allocation = true
 }
