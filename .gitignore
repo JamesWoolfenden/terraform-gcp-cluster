@@ -30,3 +30,4 @@ checksums.txt
 *.tar.gz
 original/
 .external_modules
+/.terraform.lock.hcl
