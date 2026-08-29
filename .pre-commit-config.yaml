@@ -46,11 +46,11 @@ repos:
     hooks:
     -   id: holden
         name: holden
-        description: Scan Terraform for security and best-practices issues with the locally installed holden CLI.
-        entry: holden scan example/examplea --deep
+        description: Scan Terraform (and CI/CD config) for policy violations
         language: system
+        entry: holden scan
         pass_filenames: false
-        files: \.tf$
+        types: [ terraform ]
         # pre-push, not pre-commit: a system hook resolves holden from $PATH,
         # and no CI runner has it. CI invokes `pre-commit run --all-files`,
         # whose default stage is pre-commit, so anything on that stage runs

@@ -18,7 +18,7 @@ init:
 	terraform init -reconfigure -upgrade
 
 plan:
-	terraform plan -refresh=true
+	terraform plan --out tfplan.binary -refresh=true
 
 planned: init
 	terraform plan -out tf.plan
