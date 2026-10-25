@@ -23,7 +23,6 @@ plan:
 planned: init
 	terraform plan -out tf.plan
 	terraform show -json tf.plan  > tf.json
-	checkov -f tf.json
 
 p:
 	terraform plan -refresh=true
@@ -48,6 +47,11 @@ docs:
 target:
 	@read -p "Enter Module to target:" MODULE;
 	terraform apply -target $$MODULE
+
+valid:
+	-terraform fmt -recursive
+	terraform validate
+	holden scan ../..
 
 purge:
 	$(BLAT)

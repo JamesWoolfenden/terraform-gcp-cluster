@@ -8,18 +8,20 @@ resource "google_kms_key_ring" "cluster" {
 }
 
 resource "google_kms_crypto_key" "cluster" {
-  name            = "${var.name}${random_string.random.result}"
-  key_ring        = google_kms_key_ring.cluster.id
-  rotation_period = "7776000s"
+  name                       = "${var.name}${random_string.random.result}"
+  key_ring                   = google_kms_key_ring.cluster.id
+  rotation_period            = "7776000s"
+  destroy_scheduled_duration = "604800s"
   lifecycle {
     prevent_destroy = true
   }
 }
 
 resource "google_kms_crypto_key" "nodepool" {
-  name            = "${var.name}-nodepool-${random_string.random.result}"
-  key_ring        = google_kms_key_ring.cluster.id
-  rotation_period = "7776000s"
+  name                       = "${var.name}-nodepool-${random_string.random.result}"
+  key_ring                   = google_kms_key_ring.cluster.id
+  rotation_period            = "7776000s"
+  destroy_scheduled_duration = "604800s"
   lifecycle {
     prevent_destroy = true
   }

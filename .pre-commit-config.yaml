@@ -1,5 +1,3 @@
-default_language_version:
-    python: python3.11
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c # v6.0.0
@@ -32,16 +30,14 @@ repos:
     -   id: shell-lint
         exclude: template|\.template$
 -   repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: 5b5dddc4fb0f83c3ea1fc5616fa63e115dce83e0 # v0.49.1
+    rev: cbcdc463be5464e25e3e955a511599a67b9b987f # v0.50.0
     hooks:
     -   id: markdownlint
 -   repo: https://github.com/jameswoolfenden/pre-commit
     rev: c5bdf92051a9e574d62152d81a3bd98a71816dd3 # v0.1.62
     hooks:
     -   id: terraform-fmt
-        language_version: python3.11
     -   id: tf2docs
-        language_version: python3.11
 -   repo: local
     hooks:
     -   id: holden
@@ -61,11 +57,11 @@ repos:
         # Requires `pre-commit install --hook-type pre-push` once per clone.
         stages: [pre-push]
 -   repo: https://github.com/jameswoolfenden/pike
-    rev: a38ea683d195b2a3a3dc08d233dc231f1db58f73 # v1.0.12
+    rev: fc5d8825c64a6c87c33d9175d4739df304f3eed5 # v1.0.13
     hooks:
     -   id: pike-docs-go
         args: ["readme","-d", ".", "-i"]
--   repo: 'https://github.com/rhysd/actionlint'
+-   repo: https://github.com/rhysd/actionlint
     rev: 914e7df21a07ef503a81201c76d2b11c789d3fca # v1.7.12
     hooks:
       - id: actionlint
